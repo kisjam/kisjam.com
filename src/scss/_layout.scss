@@ -1,0 +1,181 @@
+/* -------------------------------------------------------------------------
+
+		layout.scss
+
+------------------------------------------------------------------------- */
+
+/* web font
+------------------------------------------------- */
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+/* body
+------------------------------------------------- */
+html {
+	font-size: 62.5%;
+	background: #FFFDFC;
+}
+body {
+	font-family: 'ヒラギノ角ゴ ProN W3','Hiragino Kaku Gothic ProN','ヒラギノ角ゴ Pro W3','Hiragino Kaku Gothic Pro','メイリオ',Meiryo,'ＭＳ Ｐゴシック',sans-serif;
+	color: $color_text;
+	font-size: 1.4rem;
+	-webkit-text-size-adjust:100%;
+}
+
+/* fluid image
+------------------------------------------------- */
+
+
+/* header
+------------------------------------------------- */
+.header {
+	position: relative;
+	width: 100%;
+	height: 100vh;
+	box-sizing: border-box;
+	&__logo {
+		position: absolute;
+		left: 0;
+		right: 0;
+		top: 0;
+		bottom: 0;
+		z-index: 1;
+		margin: auto;
+		@include mq(sp){
+		}
+		svg {
+			position: absolute;
+			left: 0;
+			right: 0;
+			top: 0;
+			bottom: 0;
+			margin: auto;
+			@include mq(sp){
+				transform: scale(0.7);
+				transform-origin: center center;
+			}
+		}
+	}
+	.mv {
+		width: 100%;
+		height: 100vh;
+	}
+	.menu {
+		position: absolute;
+		left: 0;
+		bottom: 0;
+		z-index: 2;
+		width: 100%;
+		background: #FFFDFC;
+		border-top: 1px #eee solid;
+		@include ff-roboto;
+		&__list {
+			text-align: center;
+			&__item {
+				display: inline-block;
+				a {
+					position: relative;
+					display: block;
+					padding: 30px 40px;
+					font-size: 2rem;
+					@include mq(sp){
+						padding: 30px 25px;
+						font-size: 1.8rem;
+					}
+					&:after {
+						content: '';
+						position: absolute;
+						left: 0;
+						right: 0;
+						bottom: 20px;
+						margin: 0 auto;
+						display: block;
+						width: 0;
+						height: 2px;
+						background: #55D6BE;
+						transition: width 0.4s ease;
+
+					}
+					&:hover {
+						color: inherit;
+						&:after {
+							width: 60%;
+						}
+					}
+
+				}
+			}
+		}
+	}
+}
+
+.sec {
+	margin: 90px 0;
+	padding: 120px 0;
+	@include mq(sp) {
+		margin: 30px 0;
+		padding: 60px 0;
+	}
+	.inner {
+		width: $width_section;
+		margin: 0 auto;
+		@include mq(sp) {
+			width: auto;
+		}
+	}
+	&__ttl-primary {
+		position: relative;
+		margin: 0 0 60px;
+		font-size: 2.4rem;
+		text-align: center;
+		&--roboto {
+			@include ff-roboto;
+		}
+		&:after {
+			content: '';
+			display: block;
+			position: absolute;
+			bottom: -15px;
+			left: 50%;
+			width: 20px;
+			height: 2px;
+			background: #222;
+			transform: translateX(-50%);
+		}
+	}
+	&__ttl-secondly {
+		margin: 0 0 20px 0;
+		font-size: 1.8rem;
+		color: #55D6BE;
+		&--roboto {
+			@include ff-roboto;
+		}
+	}
+}
+
+
+/* gloal navi
+------------------------------------------------- */
+
+/* Local nav
+------------------------------------------------- */
+
+/* breadcrumbs
+------------------------------------------------- */
+
+/* container
+------------------------------------------------- */
+
+/* main
+------------------------------------------------- */
+
+
+/* footer
+------------------------------------------------- */
+.footer {
+	padding: 40px 0 40px;
+	&__copyright {
+		font-size: 1.4rem;
+		color: #999;
+		text-align: center;
+	}
+}

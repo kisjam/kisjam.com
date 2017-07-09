@@ -1,0 +1,219 @@
+/* -------------------------------------------------------------------------
+
+		contents.scss
+
+------------------------------------------------------------------------- */
+
+
+/* Profile
+------------------------------------------------- */
+.profile {
+  @include mq(sp){
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  &__photo {
+    float: left;
+    width: 130px;
+    margin: 0 40px 0 0;
+    @include mq(sp){
+			float: none;
+      width: 50%;
+      margin: 0 auto 40px;
+		}
+    img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 65px;
+      @include mq(sp){
+  			border-radius: 50%;
+  		}
+    }
+  }
+  &__name {
+    margin: 0 0 20px 0;
+    font-size: 2.4rem;
+    @include mq(sp){
+			text-align: center;
+		}
+    &__ruby {
+      margin: 0 0 0 10px;
+      color: #999;
+      font-size: 1.4rem;
+    }
+  }
+  &__desc {
+    overflow: hidden;
+    font-size: 1.6rem;
+
+  }
+  .box-wrapper {
+    clear: both;
+    display: flex;
+    justify-content: center;
+    @include mq(sp){
+			display: block;
+		}
+  }
+  .box {
+    width: 100%;
+    margin: 60px 0 0;
+    @include mq(sp){
+			margin: 60px 0 60px;
+		}
+  }
+}
+.list {
+  padding: 0 0 0 20px;
+  &__item {
+    font-size: 1.6rem;
+    list-style: disc;
+  }
+  &--love {}
+  &--contact {
+    padding: 0;
+    .list__item {
+      margin: 5px 0;
+      list-style: none;
+    }
+  }
+  &--works {
+    margin: 20px 0;
+    text-align: center;
+    @include mq(sp){
+			text-align: left;
+      padding: 0;
+		}
+    .list__item {
+      margin: 0 20px;
+      list-style: none;
+      display: inline-block;
+      @include mq(sp){
+  			display: block;
+        margin: 5px 0;
+  		}
+    }
+
+  }
+}
+
+
+/* blog
+------------------------------------------------- */
+.blog {
+  background: #F2EDE6;
+  @include mq(sp){
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+.entry {
+  margin: 0 0 40px 0;
+  border-top: 1px #222 solid;
+  &__item {
+    a {
+      display: flex;
+      align-items: flex-start;
+      padding: 20px;
+      text-decoration: none;
+      border-bottom: 1px #222 solid;
+      @include mq(sp){
+  			display: block;
+        padding: 20px 0;
+  		}
+    }
+    &__date {
+      width: 6em;
+      margin: 0 10px 0 0;
+      color: #999;
+      font-size: 1.4rem;
+      @include mq(sp){
+        display: inline-block;
+        width: auto;
+  			margin: 0 0 10px 0;
+  		}
+    }
+    &__cat {
+
+      width: 8em;
+      font-size: 1.4rem;
+      @include mq(sp){
+  			width: auto;
+        display: inline-block;
+        margin: 0 0 0 20px;
+  		}
+    }
+    &__ttl {
+      flex: 1;
+      margin: 0 0 0 20px;
+      font-size: 1.6rem;
+      @include mq(sp){
+  			margin: 0 0 0 0;
+  		}
+    }
+  }
+}
+.btn {
+  text-align: center;
+  a {
+    display: inline-block;
+    padding: 15px 40px;
+    border: 2px #222 solid;
+    font-size: 1.6rem;
+  }
+}
+
+/* works
+------------------------------------------------- */
+.works {
+  @include mq(sp){
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+  &__desc {
+    font-size: 1.6rem;
+    text-align: center;
+  }
+  &__career {
+    margin: 80px 0 120px 0;
+    @include mq(sp) {
+      margin: 60px 0 0;
+    }
+    &__ttl {
+      margin: 40px 0 20px;
+      text-align: center;
+      font-size: 1.8rem;
+      @include ff-roboto;
+    }
+
+  }
+}
+.career {
+  &__item {
+    display: flex;
+    margin: 10px 0;
+    font-size: 1.6rem;
+    @include mq(sp){
+			display: block;
+		}
+    &__term {
+      display: inline-block;
+      width: 50%;
+      padding: 0 20px 0 0;
+      text-align: right;
+      box-sizing: border-box;
+      @include ff-roboto;
+      @include mq(sp){
+        width: auto;
+        text-align: left;
+  		}
+    }
+    &__name {
+      display: inline-block;
+      padding: 0 0 0 20px;
+      @include mq(sp){
+        padding: 0;
+  		}
+    }
+  }
+}
