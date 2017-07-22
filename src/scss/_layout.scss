@@ -40,6 +40,7 @@ body {
 		bottom: 0;
 		z-index: 1;
 		margin: auto;
+
 		@include mq(sp){
 		}
 		svg {
@@ -49,10 +50,24 @@ body {
 			top: 0;
 			bottom: 0;
 			margin: auto;
+			fill: transparent;
+			stroke: #333;
+			animation: stanby 0.2s ease infinite alternate;
+			transition: fill 1s ease,
+				stroke 1s ease;
 			@include mq(sp){
 				transform: scale(0.7);
 				transform-origin: center center;
 			}
+		}
+		&--loaded svg {
+			animation: none;
+			fill: #333;
+			stroke: transparent;
+		}
+		@keyframes stanby {
+			0% { opacity: 0;}
+			100% { opacity: 1;}
 		}
 	}
 	.mv {

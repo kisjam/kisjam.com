@@ -105,3 +105,9 @@ class ParticalNetwork {
 }
 const mv = new ParticalNetwork();
 mv.start();
+
+
+window.addEventListener('load', function() {
+  let logo = document.getElementsByClassName('header__logo');
+  logo[0].classList.add('header__logo--loaded');
+})

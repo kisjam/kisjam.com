@@ -230,13 +230,36 @@ body {
       right: 0;
       top: 0;
       bottom: 0;
-      margin: auto; }
+      margin: auto;
+      fill: transparent;
+      stroke: #333;
+      -webkit-animation: stanby 0.2s ease infinite alternate;
+              animation: stanby 0.2s ease infinite alternate;
+      -webkit-transition: fill 1s ease, stroke 1s ease;
+      transition: fill 1s ease, stroke 1s ease; }
       @media screen and (max-width: 768px) {
         .header__logo svg {
           -webkit-transform: scale(0.7);
                   transform: scale(0.7);
           -webkit-transform-origin: center center;
                   transform-origin: center center; } }
+    .header__logo--loaded svg {
+      -webkit-animation: none;
+              animation: none;
+      fill: #333;
+      stroke: transparent; }
+
+@-webkit-keyframes stanby {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
+
+@keyframes stanby {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
   .header .mv {
     width: 100%;
     height: 100vh; }

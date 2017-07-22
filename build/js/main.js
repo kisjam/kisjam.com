@@ -11693,5 +11693,10 @@
 	var mv = new ParticalNetwork();
 	mv.start();
 
+	window.addEventListener('load', function () {
+	  var logo = document.getElementsByClassName('header__logo');
+	  logo[0].classList.add('header__logo--loaded');
+	});
+
 /***/ })
 /******/ ]);
