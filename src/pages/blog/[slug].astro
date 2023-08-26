@@ -1,0 +1,25 @@
+---
+import TwoColumnLayout from "../../layouts/TwoColumnLayout.astro";
+import { getAllPosts } from "../../utils/api.js";
+
+const { post } = Astro.props;
+
+export async function getStaticPaths() {
+	const allPosts = await getAllPosts();
+	return await allPosts.map((post)=>{
+		return {
+			params: {
+				slug: post.slug
+			}
+		}
+	});
+}
+---
+<TwoColumnLayout>
+	<article>
+		<header>
+			<h1>{post.title}</h1>
+			<p>{ post.date }</p>
+		</header>
+	</article>
+</TwoColumnLayout>

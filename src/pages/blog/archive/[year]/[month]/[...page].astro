@@ -1,0 +1,45 @@
+---
+import { getAllPosts } from "../../../../../utils/api.js";
+import TwoColumnLayout from "../../../../../layouts/TwoColumnLayout.astro";
+
+export async function getStaticPaths({ paginate }) {
+
+	const allPosts = await getAllPosts();
+	const allPostsByArchive = allPosts.reduce((acc, post) => {
+		const date = new Date(post.date);
+		const year = date.getFullYear();
+		const month = date.getMonth() + 1;
+		const key = `${year}-${month}`;
+		if (!acc[key]) {
+			acc[key] = [];
+		}
+		acc[key].push(post);
+		return acc;
+	}, {});
+
+	return Object.keys(allPostsByArchive).map((key) => {
+		const [year, month] = key.split("-");
+
+		return paginate(allPostsByArchive[key], {
+			pageSize: 10,
+			params: {
+				year: year,
+				month: month
+			}
+		});
+
+	});
+};
+
+const { page } = Astro.props;
+const params = Astro.params;
+---
+
+<TwoColumnLayout>
+<h1>{page.currentPage}ページ</h1>
+<ul>
+	{page.data.map(post => <li>{post.title}</li>)}
+</ul>
+{page.url.prev ? <a href={page.url.prev}>Previous</a> : null}
+{page.url.next ? <a href={page.url.next}>Next</a> : null}
+</TwoColumnLayout>

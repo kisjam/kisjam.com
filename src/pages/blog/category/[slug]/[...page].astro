@@ -1,0 +1,27 @@
+---
+import { getAllPostsByCategory } from "../../../../utils/api.js";
+import TwoColumnLayout from "../../../../layouts/TwoColumnLayout.astro";
+
+export async function getStaticPaths({ paginate }) {
+
+	const allPosts = await getAllPostsByCategory();
+
+	return allPosts.map((category)=> {
+		return paginate(category.posts.nodes, {
+			pageSize: 10,
+			params: { slug: category.slug }
+		});
+	})
+}
+const { page } = Astro.props;
+const params = Astro.params;
+---
+
+<TwoColumnLayout>
+<h1>{page.currentPage}ページ</h1>
+<ul>
+	{page.data.map(post => <li>{post.title}</li>)}
+</ul>
+{page.url.prev ? <a href={page.url.prev}>Previous</a> : null}
+{page.url.next ? <a href={page.url.next}>Next</a> : null}
+</TwoColumnLayout>

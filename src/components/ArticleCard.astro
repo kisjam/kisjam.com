@@ -1,0 +1,23 @@
+---
+const { title, date, modified, slug } = Astro.props;
+const publishedDate = new Date(date);
+const updatedDate = new Date(modified);
+
+const isUpdated = compareDates(publishedDate, updatedDate);
+
+function compareDates(publishedDate, updatedDate) {
+  if (publishedDate.getTime() === updatedDate.getTime()) {
+	return false;
+  } else if (publishedDate.getTime() < updatedDate.getTime()) {
+    return true;
+  }
+}
+
+---
+<article>
+	<a href={ `/posts/${slug}/` }>
+		<p class="icon">🎷</p>
+		<p class="date">{ isUpdated ? `${updatedDate}更新` : `${publishedDate}公開` }</p>
+		<h1>{ title }</h1>
+	</a>
+</article>

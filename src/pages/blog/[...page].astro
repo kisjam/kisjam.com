@@ -1,0 +1,20 @@
+---
+import TwoColumnLayout from "../../layouts/TwoColumnLayout.astro";
+import { getAllPosts } from "../../utils/api.js";
+
+export async function getStaticPaths({ paginate }) {
+	const allPosts = await getAllPosts();
+	return paginate(allPosts, {
+      pageSize: 10
+    });
+}
+const { page } = Astro.props;
+---
+<TwoColumnLayout>
+<h1>{page.currentPage}ページ</h1>
+<ul>
+	{page.data.map(post => <li>{post.title}</li>)}
+</ul>
+{page.url.prev ? <a href={page.url.prev}>Previous</a> : null}
+{page.url.next ? <a href={page.url.next}>Next</a> : null}
+</TwoColumnLayout>

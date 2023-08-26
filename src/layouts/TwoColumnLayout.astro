@@ -1,0 +1,42 @@
+---
+import DefaultLayout from "./DefaultLayout.astro";
+import { getCategories } from "../utils/api";
+import { getArchives } from "../utils/api";
+
+const categories = await getCategories();
+const archives = await getArchives();
+console.log(archives);
+archives.map(archive => {
+	console.log(archive);
+});
+
+---
+<DefaultLayout>
+	<div class="two-column">
+		<div class="two-column__main">
+			<slot>
+		</div>
+		<div class="two-column__sidebar">
+			<div class="site-sidebar">
+				<section>
+					<h2>Category</h2>
+					<ul>
+						{categories.map((category)=>{
+							return <li><a href={`/blog/category/${category.slug}/`}>{category.name}</a></li>
+						})}
+					</ul>
+
+				</section>
+				<section>
+					<h2>Archive</h2>
+					<ul>
+						{archives.map((archive)=>{
+							// return archive;
+							return <li><a href={`/blog/archive/${archive}/`}>{archive}</a></li>
+						})}
+					</ul>
+				</section>
+			</div>
+		</div>
+	</div>
+</DefaultLayout>
