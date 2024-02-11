@@ -1,0 +1,9 @@
+@use "@assets/styles/global" as *;
+
+.text {
+	&:not(:first-child) {
+		margin-top: 16px;
+	}
+
+	line-height: 1.75;
+}

@@ -1,7 +1,41 @@
 ---
 import DefaultLayout from "../layouts/DefaultLayout.astro";
+import Sketch from "../components/Sketch.astro";
+import { getLatestPosts } from "../utils/api.js";
+import { Debug } from 'astro/components';
+import BlockArticle from "src/components/BlockArticle.astro";
+
+const { posts } = await getLatestPosts();
+
 ---
 
 <DefaultLayout>
-  <div class="mv"></div>
+	<Sketch />
+	<section class="container-block">
+		<!-- <h2 class="title-block-h2"><a href="/about/" class="title-block-h2__link">ABOUT</a></h2> -->
+		<h2 class="title-block-h2"><span class="title-block-h2__inner">ABOUT</span></h2>
+
+		<div class="block-box">
+			<div class="block-box__inner">
+				<p class="text">Hello, I am a front-end engineer and freelance.</p>
+				<section class="section-sm">
+					<h3 class="title-h3">Akihiro Takaoka</h3>
+					<p class="text">HTML / CSS / JavaScript / Vue / WordPress / Astro</p>
+				</section>
+			</div>
+		</div>
+	</section>
+	<section class="container-block">
+		<h2 class="title-block-h2"><a href="/blog/" class="title-block-h2__link">BLOG</a></h2>
+		{ posts.nodes.map( post => <BlockArticle post={post} /> ) }
+	</section>
+	<section class="container-block">
+		<h2 class="title-block-h2"><span class="title-block-h2__inner">CONTACT</span></h2>
+		<div class="block-box">
+			<div class="block-box__inner">
+				<p class="text">仕事のご依頼・相談は下記メールアドレスまでお気軽に連絡ください。</p>
+				<p class="button-text"><a href="mailto:hello@kisjam.com" class="button-text__link">hello@kisjam.com</a></p>
+			</div>
+		</div>
+	</section>
 </DefaultLayout>

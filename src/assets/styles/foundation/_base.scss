@@ -1,0 +1,32 @@
+@use "@assets/styles/global" as *;
+
+html {
+	background-color: $color-black;
+	// scroll-padding-top: calc(var(--header-height) + 32px);
+}
+
+body {
+	font-family: $ff-noto-sans;
+	color: $color-black;
+	font-size: rem(16);
+	font-weight: $fw-medium;
+	-webkit-text-size-adjust: 100%;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	font-feature-settings: "palt";
+}
+
+img,
+svg {
+	max-width: 100%;
+	height: auto;
+}
+
+a:link {
+	color: $color-black;
+}
+a:visited {
+	color: $color-black;
+}
+a:hover {
+}

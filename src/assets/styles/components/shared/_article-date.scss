@@ -1,0 +1,16 @@
+@use "@assets/styles/global" as *;
+
+.article-date {
+	display: flex;
+	color: rgba($color-black, 0.7);
+	font-size: rem(14);
+
+	&__published {
+		margin-right: 8px;
+	}
+
+	&__updated {
+		margin-left: 16px;
+		margin-right: 8px;
+	}
+}

@@ -1,0 +1,14 @@
+@use "@assets/styles/global" as *;
+
+.icon {
+	&.-github {
+		fill: $color-black;
+		// width: 48px;
+		// height: 48px;
+	}
+	&.-x {
+		fill: $color-black;
+		// width: 48px;
+		// height: 48px;
+	}
+}

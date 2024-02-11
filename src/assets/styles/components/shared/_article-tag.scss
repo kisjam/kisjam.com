@@ -1,0 +1,14 @@
+@use "@assets/styles/global" as *;
+
+.article-tag {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+
+	&__item {
+		padding: 2px 8px;
+		border: 1px solid rgba($color-black, 0.2);
+		border-radius: $radius;
+		font-size: rem(14);
+	}
+}

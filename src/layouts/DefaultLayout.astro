@@ -2,6 +2,7 @@
 import Head from '../components/Head.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import Icon from '../components/Icon.astro';
 ---
 
 <html lang="ja">
@@ -9,10 +10,13 @@ import Footer from '../components/Footer.astro';
 		<Head />
 	</head>
 	<body>
+		<Icon />
 		<div class="site-container">
 			<Header />
 			<main class="site-main">
-				<slot />
+				<div class="site-main__inner">
+					<slot />
+				</div>
 			</main>
 			<Footer />
 		</div>

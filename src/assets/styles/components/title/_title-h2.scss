@@ -1,0 +1,10 @@
+@use "@assets/styles/global" as *;
+
+.title-h2 {
+	margin-bottom: 16px;
+
+	&::before {
+		content: "##";
+		margin-right: 8px;
+	}
+}

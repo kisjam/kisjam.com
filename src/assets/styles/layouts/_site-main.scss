@@ -1,0 +1,28 @@
+@use "@assets/styles/global" as *;
+
+.site-main {
+	display: grid;
+	gap: $gap;
+	grid-template-columns: auto 640px auto;
+	padding-right: $gap;
+	padding-left: $gap;
+
+	@include mq(sm) {
+		grid-template-columns: 1fr;
+	}
+
+	&::before,
+	&::after {
+		content: "";
+		background-color: $color-gray;
+		border-radius: $radius;
+
+		@include mq(sm) {
+			content: none;
+		}
+	}
+	&__inner {
+		display: grid;
+		gap: $gap;
+	}
+}

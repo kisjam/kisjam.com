@@ -1,0 +1,64 @@
+---
+---
+
+<div class="sketch">
+	<div id="sketch-blob"></div>
+</div>
+
+<script>
+	import p5 from 'p5';
+
+	let sketch = (p) => {
+		let rad;
+		let res;
+		let angle;
+		const noiseScale = 0.002;
+		const noiseOffset = 10;
+
+		p.setup = () => {
+			p.createCanvas(320, 320);
+			rad = 100;
+			res = 10;
+			angle = 360 / res;
+			p.angleMode(p.DEGREES);
+		};
+
+		function drawBlob() {
+			let blobObj = [];
+
+			p.push();
+			p.translate(p.width * 0.5, p.height * 0.5);
+			p.noStroke();
+			p.fill(1, 46, 64);
+			p.beginShape();
+
+			for (let i = 0; i < res; i++) {
+			let xoff = p.frameCount * noiseScale + i + noiseOffset;
+			let yoff = p.frameCount * noiseScale + i + noiseOffset;
+
+			let nX = p.noise(xoff) * 100 - 50;
+			let nY = p.noise(yoff) * 100 - 50;
+
+			let x = (rad + nX) * p.cos(angle * i);
+			let y = (rad + nY) * p.sin(angle * i);
+			blobObj.push({ x: x, y: y });
+
+			p.curveVertex(blobObj[i].x, blobObj[i].y);
+			}
+
+			for (let j = 0; j < 3; j++) {
+			p.curveVertex(blobObj[j].x, blobObj[j].y);
+			}
+
+			p.endShape();
+			p.pop();
+		}
+
+		p.draw = () => {
+			p.background(244, 245, 245);
+			drawBlob();
+		};
+	};
+
+	new p5(sketch, 'sketch-blob');
+</script>

@@ -1,6 +1,7 @@
 ---
-import TwoColumnLayout from "../../layouts/TwoColumnLayout.astro";
+import BlogLayout from "../../layouts/BlogLayout.astro";
 import { getAllPosts } from "../../utils/api.js";
+import BlockArticle from "../../components/BlockArticle.astro";
 
 export async function getStaticPaths({ paginate }) {
 	const allPosts = await getAllPosts();
@@ -10,11 +11,15 @@ export async function getStaticPaths({ paginate }) {
 }
 const { page } = Astro.props;
 ---
-<TwoColumnLayout>
-<h1>{page.currentPage}ページ</h1>
-<ul>
-	{page.data.map(post => <li>{post.title}</li>)}
-</ul>
-{page.url.prev ? <a href={page.url.prev}>Previous</a> : null}
-{page.url.next ? <a href={page.url.next}>Next</a> : null}
-</TwoColumnLayout>
+<BlogLayout>
+	<section class="container-block">
+		<h2 class="title-block-h1"><span class="title-block-h1__inner">BLOG</span></h2>
+
+		{ page.data.map( post => <BlockArticle post={post} /> ) }
+
+		<div class="block-pagination">
+			{page.url.prev ? <p class="block-pagination__prev"><a href={page.url.prev} class="block-pagination__link">Prev</a></p> : null}
+			{page.url.next ? <p class="block-pagination__next"><a href={page.url.next} class="block-pagination__link">Next</a></p> : null}
+		</div>
+	</section>
+</BlogLayout>

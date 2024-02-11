@@ -1,0 +1,46 @@
+@use "@assets/styles/global" as *;
+
+.block-pagination {
+	$this: &;
+	display: flex;
+	gap: $gap;
+
+	&__prev {
+		flex-grow: 1;
+		grid-column: 1 / 2;
+
+		#{$this}__link::after {
+			left: 16px;
+		}
+	}
+	&__next {
+		flex-grow: 1;
+		grid-column: 2 / 3;
+
+		#{$this}__link::after {
+			right: 16px;
+		}
+	}
+
+	&__link {
+		position: relative;
+		background-color: $color-gray;
+		border-radius: $radius;
+		color: $color-black;
+		display: flex;
+		justify-content: center;
+		text-decoration: none;
+		padding: 24px 32px;
+
+		&::after {
+			content: "";
+			position: absolute;
+			top: 50%;
+			transform: translateY(-50%);
+			width: 8px;
+			height: 8px;
+			border-radius: 50%;
+			background-color: $color-black;
+		}
+	}
+}

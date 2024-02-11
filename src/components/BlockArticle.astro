@@ -1,0 +1,47 @@
+---
+import { formatDate, isSameDay } from '../utils/date';
+const { title, date, modified, uri, categories, tags, acfEmoji } = Astro.props.post;
+---
+<article class="block-article">
+	<a href={ uri } class="block-article__link">
+		<div class="block-article__header">
+			<p class="block-article__icon">{ acfEmoji }</p>
+		</div>
+		<div class="block-article__body">
+			<div class="block-article__date">
+				<dl class="article-date">
+					<dt class="article-date__published">公開日</dt>
+					<dd class="article-date__date">{ formatDate(date) }</dd>
+					{
+						!isSameDay(date, modified) &&
+						(
+							<dt class="article-date__updated">最終更新日</dt>
+							<dd class="article-date__date">{ formatDate(modified) }</dd>
+						)
+					}
+				</dl>
+			</div>
+			<p class="block-article__title">{ title }</p>
+
+			{categories.nodes.length > 0 && (
+				<div class="block-article__category">
+					<ul class="article-category">
+						{ categories.nodes.map( (category) => (
+							<li class="article-category__item">{ category.name }</li>
+						))}
+					</ul>
+				</div>
+			)}
+			{tags.nodes.length > 0 && (
+				<div class="block-article__tag">
+					<ul class="article-tag">
+						{ tags.nodes.map( (tag) => (
+							<li class="article-tag__item">{ tag.name }</li>
+						))}
+					</ul>
+				</div>
+			)}
+
+		</div>
+	</a>
+</article>

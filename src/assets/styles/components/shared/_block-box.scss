@@ -1,0 +1,11 @@
+@use "@assets/styles/global" as *;
+
+.block-box {
+	background-color: $color-gray;
+	border-radius: $radius;
+	color: $color-black;
+
+	&__inner {
+		padding: 32px;
+	}
+}

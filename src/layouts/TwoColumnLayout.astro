@@ -5,10 +5,6 @@ import { getArchives } from "../utils/api";
 
 const categories = await getCategories();
 const archives = await getArchives();
-console.log(archives);
-archives.map(archive => {
-	console.log(archive);
-});
 
 ---
 <DefaultLayout>

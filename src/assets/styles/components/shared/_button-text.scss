@@ -1,0 +1,28 @@
+@use "@assets/styles/global" as *;
+
+.button-text {
+	display: flex;
+
+	margin-top: 32px;
+
+	&__link {
+		position: relative;
+		text-decoration: none;
+		display: block;
+		padding-bottom: 8px;
+
+		&::before {
+			content: "📫";
+			margin-right: 8px;
+		}
+		&::after {
+			content: "";
+			position: absolute;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			background-color: $color-black;
+			height: 1px;
+		}
+	}
+}

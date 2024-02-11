@@ -1,17 +1,36 @@
 ---
 ---
 <header class="site-header">
-	<h1>
-		<a href="/">
-			<span><img src="/assets/images/common/logo.svg" alt="" width="60" height="60"></span>
-			<span>kisjam.com</span>
-		</a>
-	</h1>
-	<nav>
-		<ul>
-			<li><a href="/about/">About</a></li>
-			<li><a href="/blog/">Blog</a></li>
-			<li><a href="/contact/">Contact</a></li>
-		</ul>
-	</nav>
+	<div class="site-header__inner">
+		<div class="site-header__logo">
+			<h1 class="header-logo"><a href="/" class="header-logo__link">kisjam.com</a></h1>
+		</div>
+
+		<div class="site-header__skeleton"></div>
+
+		<div class="site-header__nav">
+			<nav class="header-nav">
+				<ul class="header-nav__list">
+					<li class="header-nav__list-item"><a href="/" class="header-nav__link">HOME</a></li>
+					<li class="header-nav__list-item"><a href="/blog/" class="header-nav__link">BLOG</a></li>
+					<!-- <li class="header-nav__list-item"><a href="/about/" class="header-nav__link">ABOUT</a></li> -->
+					<li class="header-nav__list-item">
+						<a href="https://github.com/kisjam/" target="_blank" class="header-nav__link-icon">
+							<svg class="icon -github" aria-label="kisjam" width="32" height="32">
+								<use xlink:href="#icon-github" width="32" height="32"></use>
+							</svg>
+						</a>
+					</li>
+					<li class="header-nav__list-item">
+						<a href="https://twitter.com/kisjam_" target="_blank" class="header-nav__link-icon">
+							<svg class="icon -x" aria-label="@kisjam_" width="24" height="24">
+								<use xlink:href="#icon-x" width="24" height="24"></use>
+							</svg>
+						</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+
+	</div>
 </header>

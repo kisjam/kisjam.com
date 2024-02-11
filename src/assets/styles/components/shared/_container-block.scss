@@ -1,0 +1,6 @@
+@use "@assets/styles/global" as *;
+
+.container-block {
+	display: grid;
+	gap: $gap;
+}

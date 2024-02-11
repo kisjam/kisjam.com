@@ -1,0 +1,33 @@
+@use "@assets/styles/global" as *;
+
+.header-nav {
+	&__list {
+		display: flex;
+		gap: $gap;
+
+		&-item {
+		}
+	}
+	&__link {
+		display: flex;
+		background-color: $color-gray;
+		border-radius: $radius;
+		font-size: rem(16);
+		text-decoration: none;
+		height: var(--height-block);
+		align-items: center;
+		padding-right: 40px;
+		padding-left: 40px;
+
+		&-icon {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			background-color: $color-gray;
+			color: $color-black;
+			border-radius: $radius;
+			width: var(--height-block);
+			height: var(--height-block);
+		}
+	}
+}

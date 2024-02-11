@@ -1,0 +1,17 @@
+@use "@assets/styles/global" as *;
+
+.site-footer {
+	padding: $gap;
+	background-color: $color-black;
+
+	&__inner {
+		background-color: $color-gray;
+		color: $color-black;
+		border-radius: $radius;
+		padding: 16px 32px;
+	}
+
+	&__copyright {
+		text-align: right;
+	}
+}

@@ -1,0 +1,28 @@
+$base-font-size: 16;
+
+$ff-noto-sans: "Noto Sans JP", sans-serif;
+
+$fw-thin: 100;
+$fw-light: 300;
+$fw-regular: 400;
+$fw-medium: 500;
+$fw-semibold: 600;
+$fw-bold: 700;
+$fw-black: 900;
+
+$color-black: #012e40;
+$color-white: #fff;
+$color-gray: #f4f5f5;
+
+$block-fill: $color-gray;
+
+$breakpoints: (
+	xl: 1280px,
+	lg: 1024px,
+	md: 768px,
+	sm: 656px,
+);
+
+$width-content: 640px;
+$gap: 4px;
+$radius: 5px;

@@ -1,0 +1,36 @@
+---
+import DefaultLayout from "./DefaultLayout.astro";
+import { getCategories } from "../utils/api";
+import { getArchives } from "../utils/api";
+
+const categories = await getCategories();
+const archives = await getArchives();
+
+---
+<DefaultLayout>
+	<slot />
+
+	<!-- <section class="block-box">
+		<div class="block-box__inner">
+			<h2 class="title-h2">Category</h2>
+			<ul class="article-category">
+				{categories.map((category)=>{
+					return <li class="article-category__item"><a href={`/blog/category/${category.slug}/`}>{category.name}</a></li>
+				})}
+			</ul>
+		</div>
+	</section>
+	<section class="block-box">
+		<div class="block-box__inner">
+			<h2 class="title-h2">Archive</h2>
+		<ul>
+			{archives.map((archive)=>{
+				// return archive;
+				return <li><a href={`/blog/archive/${archive}/`}>{archive}</a></li>
+			})}
+		</ul>
+		</div>
+
+	</section> -->
+
+</DefaultLayout>

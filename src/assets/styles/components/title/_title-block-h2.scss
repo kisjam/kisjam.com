@@ -1,0 +1,41 @@
+@use "@assets/styles/global" as *;
+
+.title-block-h2 {
+	background-color: $color-gray;
+	border-radius: $radius;
+	color: $color-black;
+
+	&__inner {
+		display: block;
+		padding: 24px 32px;
+
+		&::before {
+			content: "##";
+			margin-right: 8px;
+		}
+	}
+
+	&__link {
+		position: relative;
+		display: block;
+		padding: 24px 32px;
+		text-decoration: none;
+
+		&::before {
+			content: "##";
+			margin-right: 8px;
+		}
+
+		&::after {
+			content: "";
+			position: absolute;
+			right: 16px;
+			top: 50%;
+			transform: translateY(-50%);
+			width: 8px;
+			height: 8px;
+			border-radius: 50%;
+			background-color: $color-black;
+		}
+	}
+}
