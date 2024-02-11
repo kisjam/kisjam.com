@@ -1,0 +1,16 @@
+@use "@assets/styles/global" as *;
+
+@mixin list-disc {
+	&:not(:first-child) {
+		margin-top: 24px;
+	}
+	margin-bottom: 24px;
+	padding-left: 24px;
+	list-style-type: disc;
+	line-height: 1.75;
+	display: grid;
+	gap: 8px;
+}
+.list-disc {
+	@include list-disc;
+}

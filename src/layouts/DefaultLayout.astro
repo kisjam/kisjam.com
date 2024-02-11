@@ -3,13 +3,17 @@ import Head from '../components/Head.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import Icon from '../components/Icon.astro';
+import GtmHead from '../components/GtmHead.astro';
+import GtmBody from '../components/GtmBody.astro';
 ---
 
 <html lang="ja">
 	<head>
+		<GtmHead />
 		<Head />
 	</head>
 	<body>
+		<GtmBody />
 		<Icon />
 		<div class="site-container">
 			<Header />

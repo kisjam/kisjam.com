@@ -1,7 +1,7 @@
 ---
 import BlogLayout from "../../layouts/BlogLayout.astro";
 import { getAllPosts } from "../../utils/api.js";
-
+import { formatDate, isSameDay } from '../../utils/date';
 const { post } = Astro.props;
 
 export async function getStaticPaths() {
@@ -18,30 +18,55 @@ export async function getStaticPaths() {
 	});
 }
 
-console.log(post);
 ---
 <BlogLayout>
-	<article>
-		<div class="container-block">
-			<figure class="block-emoji">{ post.acfEmoji }</figure>
-			<h1 class="title-block-h1"><span class="title-block-h1__inner">{ post.title }</span></h1>
-		</div>
-		<article class="block-box">
-			<div class="block-box__inner">
-
-				<p><time datetime={post.date}>{ new Date(post.date).toLocaleDateString() }</time></p>
-				<ul class="article-category">
-					{
-						post.categories ?
-							post.categories.nodes.map((category)=>{
-								return <li class="article-category__item">{category.name}</li>
-							})
-						: null
-					}
-				</ul>
-
-			<div class="content" set:html={post.content}></div>
+	<div class="container-block">
+	<article class="block-single">
+		<figure class="block-single__emoji">{ post.acfEmoji }</figure>
+		<div class="block-single__body">
+			<div class="block-single__title">
+				<h1 class="title-h1">{ post.title }</h1>
 			</div>
-		</article>
+			<div class="block-single__date">
+				<dl class="article-date">
+					<dt class="article-date__published">公開日</dt>
+					<dd class="article-date__date">{ formatDate(post.date) }</dd>
+					{
+						!isSameDay(post.date, post.modified) &&
+						(
+							<dt class="article-date__updated">最終更新日</dt>
+							<dd class="article-date__date">{ formatDate(post.modified) }</dd>
+						)
+					}
+				</dl>
+			</div>
+
+			{post.categories.nodes.length > 0 && (
+				<div class="block-single__category">
+					<ul class="article-category">
+						{ post.categories.nodes.map( (category) => (
+							<li class="article-category__item">{ category.name }</li>
+						))}
+					</ul>
+				</div>
+			)}
+
+			{post.tags.nodes.length > 0 && (
+				<div class="block-single__tag">
+					<ul class="article-tag">
+						{ post.tags.nodes.map( (tag) => (
+							<li class="article-tag__item">{ tag.name }</li>
+						))}
+					</ul>
+				</div>
+			)}
+			<div class="block-single__content">
+				<div class="article-content" set:html={post.content}></div>
+			</div>
+		</div>
 	</article>
+	<div class="block-pagination">
+			<p class="block-pagination__next"><a href="../" class="block-pagination__link">ブログ記事一覧に戻る</a></p>
+		</div>
+		</div>
 </BlogLayout>

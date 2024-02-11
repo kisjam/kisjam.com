@@ -1,0 +1,55 @@
+@use "@assets/styles/global" as *;
+@use "@assets/styles/components/title/_title-h2" as title-h2;
+@use "@assets/styles/components/title/_title-h3" as title-h3;
+@use "@assets/styles/components/title/_title-h4" as title-h4;
+@use "@assets/styles/components/shared/_text" as text;
+@use "@assets/styles/components/shared/_list-disc" as list-disc;
+
+.block-single {
+	display: grid;
+	gap: $gap;
+
+	&__emoji {
+		background-color: $color-gray;
+		border-radius: $radius;
+		color: $color-black;
+		font-size: rem(72);
+		text-align: center;
+		aspect-ratio: 3 / 1;
+		display: grid;
+		place-items: center;
+	}
+	&__body {
+		background-color: $color-gray;
+		border-radius: $radius;
+		color: $color-black;
+		padding: 32px;
+	}
+	&__category {
+		margin-top: 8px;
+	}
+	&__tag {
+		margin-top: 8px;
+	}
+	&__content {
+		margin-top: 40px;
+		border-top: 1px solid rgba($color-black, 0.1);
+		padding-top: 40px;
+
+		h2 {
+			@include title-h2.title-h2;
+		}
+		h3 {
+			@include title-h3.title-h3;
+		}
+		h4 {
+			@include title-h4.title-h4;
+		}
+		p {
+			@include text.text;
+		}
+		ul {
+			@include list-disc.list-disc;
+		}
+	}
+}

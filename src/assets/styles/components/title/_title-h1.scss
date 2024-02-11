@@ -1,0 +1,14 @@
+@use "@assets/styles/global" as *;
+
+.title-h1 {
+	&:not(:first-child) {
+		margin-top: 80px;
+	}
+
+	margin-bottom: 16px;
+
+	&::before {
+		content: "#";
+		margin-right: 8px;
+	}
+}

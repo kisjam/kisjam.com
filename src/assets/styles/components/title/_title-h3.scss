@@ -1,10 +1,17 @@
 @use "@assets/styles/global" as *;
 
-.title-h3 {
+@mixin title-h3 {
+	&:not(:first-child) {
+		margin-top: 60px;
+	}
 	margin-bottom: 16px;
 
 	&::before {
 		content: "###";
 		margin-right: 8px;
 	}
+}
+
+.title-h3 {
+	@include title-h3;
 }

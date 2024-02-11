@@ -1,51 +1,194 @@
-<!DOCTYPE html>
-<html lang="ja">
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta name="format-detection" content="telephone=no">
-		<meta name="keywords" content="">
-		<meta name="description" content="">
-		<meta property="og:title" content="">
-		<meta property="og:description" content="">
-		<meta property="og:image" content="">
-		<meta property="og:type" content="">
-		<meta property="og:url" content="">
-		<meta property="og:locate" content="ja_JP">
-		<meta property="og:site_name" content="">
-		<title>kisjam.com</title>
-	</head>
-	<body>
-		<div class="site-container">
-			<header class="site-header">
-				<h1>
-					<a href="/">
-						<span><img src="/assets/images/common/logo.svg" alt="" width="60" height="60"></span>
-						<span>kisjam.com</span>
-					</a>
-				</h1>
-				<nav>
-					<ul>
-						<li><a href="/about/">About</a></li>
-						<li><a href="/contact/">Contact</a></li>
-					</ul>
-				</nav>
-			</header>
-			<main class="site-main">
-				<div class="two-columns">
-					<div class="two-columns__main">
-						<article>
-							<header>
-								<h1>Vue.jsとAxiosでWP REST APIを使ってみた。</h1>
-								<p>2017-07-19T08:22:33</p>
-							</header>
-						</article>
-					</div>
-					<div class="two-columns__sidebar"></div>
-				</div>
-			</main>
-			<footer class="site-footer">
-				<p><small>© kisjam.com</small></p>
-			</footer>
-		</div>
-	</body></html>
+<!DOCTYPE html><html lang="ja"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="format-detection" content="telephone=no"><title>kisjam.com</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500;700&display=swap" rel="stylesheet"><!-- <link rel="stylesheet" href={styles}> --><link rel="stylesheet" href="/_astro/_page_.jOTX0jn6.css" /><script type="module" src="/_astro/hoisted.4-sQbCUz.js"></script></head> <body> <!-- Google Tag Manager (noscript) --><noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PX7N4N7" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript><!-- End Google Tag Manager (noscript) --> <svg class="svg-holder"> <symbol id="icon-github" viewBox="0 0 98 96" width="98" height="96" version="1.1" xmlns="http://www.w3.org/2000/svg"> <path fill-rule="evenodd" clip-rule="evenodd" d="M48.854 0C21.839 0 0 22 0 49.217c0 21.756 13.993 40.172 33.405 46.69 2.427.49 3.316-1.059 3.316-2.362 0-1.141-.08-5.052-.08-9.127-13.59 2.934-16.42-5.867-16.42-5.867-2.184-5.704-5.42-7.17-5.42-7.17-4.448-3.015.324-3.015.324-3.015 4.934.326 7.523 5.052 7.523 5.052 4.367 7.496 11.404 5.378 14.235 4.074.404-3.178 1.699-5.378 3.074-6.6-10.839-1.141-22.243-5.378-22.243-24.283 0-5.378 1.94-9.778 5.014-13.2-.485-1.222-2.184-6.275.486-13.038 0 0 4.125-1.304 13.426 5.052a46.97 46.97 0 0 1 12.214-1.63c4.125 0 8.33.571 12.213 1.63 9.302-6.356 13.427-5.052 13.427-5.052 2.67 6.763.97 11.816.485 13.038 3.155 3.422 5.015 7.822 5.015 13.2 0 18.905-11.404 23.06-22.324 24.283 1.78 1.548 3.316 4.481 3.316 9.126 0 6.6-.08 11.897-.08 13.526 0 1.304.89 2.853 3.316 2.364 19.412-6.52 33.405-24.935 33.405-46.691C97.707 22 75.788 0 48.854 0z"></path></symbol> <symbol id="icon-x" viewBox="0 0 300 300.251" width="300" height="300.251" version="1.1" xmlns="http://www.w3.org/2000/svg"> <path d="M178.57 127.15 290.27 0h-26.46l-97.03 110.38L89.34 0H0l117.13 166.93L0 300.25h26.46l102.4-116.59 81.8 116.59h89.34M36.01 19.54H76.66l187.13 262.13h-40.66"></path></symbol> </svg> <div class="site-container"> <header class="site-header"> <div class="site-header__inner"> <div class="site-header__logo"> <h1 class="header-logo"><a href="/" class="header-logo__link">kisjam.com</a></h1> </div> <div class="site-header__skeleton"></div> <div class="site-header__nav"> <nav class="header-nav"> <ul class="header-nav__list"> <li class="header-nav__list-item"><a href="/" class="header-nav__link">HOME</a></li> <li class="header-nav__list-item"><a href="/blog/" class="header-nav__link">BLOG</a></li> <!-- <li class="header-nav__list-item"><a href="/about/" class="header-nav__link">ABOUT</a></li> --> <li class="header-nav__list-item"> <a href="https://github.com/kisjam/" target="_blank" class="header-nav__link-icon"> <svg class="icon -github" aria-label="kisjam" width="32" height="32"> <use xlink:href="#icon-github" width="32" height="32"></use> </svg> </a> </li> <li class="header-nav__list-item"> <a href="https://twitter.com/kisjam_" target="_blank" class="header-nav__link-icon"> <svg class="icon -x" aria-label="@kisjam_" width="24" height="24"> <use xlink:href="#icon-x" width="24" height="24"></use> </svg> </a> </li> </ul> </nav> </div> </div> </header> <main class="site-main"> <div class="site-main__inner">   <div class="container-block"> <article class="block-single"> <figure class="block-single__emoji">🐥</figure> <div class="block-single__body"> <div class="block-single__title"> <h1 class="title-h1">Vue.jsとAxiosでWP REST APIを使ってみた。</h1> </div> <div class="block-single__date"> <dl class="article-date"> <dt class="article-date__published">公開日</dt> <dd class="article-date__date">2017/07/19</dd> <dt class="article-date__updated">最終更新日</dt>
+							<dd class="article-date__date">2024/02/02</dd> </dl> </div> <div class="block-single__category"> <ul class="article-category"> <li class="article-category__item">Develop</li> </ul> </div>  <div class="block-single__content"> <div class="article-content">
+<p>「<a href="http://ja.wp-api.org/">REST API</a>」はWordPressの投稿データ等をHTTPリクエストで取得できる便利な仕組みです、既存の記事を更新したり取得したりと色々できます。今回はシンプルにサイトにWordPressの新着記事を任意の数だけ表示させるのが目的です、よくある日付+カテゴリ+タイトルの構成です。</p>
+
+
+
+<p>ちなみに「<a href="http://www.kisjam.com/#blog">http://www.kisjam.com/</a>」で実際に動いています、</p>
+
+
+
+<h2 class="wp-block-heading">下準備（Vueとaxiosの読み込み）</h2>
+
+
+
+<p>webpackを使っていたのでnpmでインストールします、サクッと試したい方はCDNを使いましょう。</p>
+
+
+
+<pre class="wp-block-code"><code>$ npm install -D axios
+$ npm install -D vue&nbsp;vue-loader&nbsp;vue-template-compiler</code></pre>
+
+
+
+<p>webpack.config.jsにvue.jsの設定を追記。</p>
+
+
+
+<pre class="wp-block-code"><code>module.exports = {
+  resolve: {
+    alias: {
+      'vue': 'vue/dist/vue.common.js'
+    }
+  },
+  entry: {
+    'main': './src/js/main.js'
+  },
+  output: {
+    path: __dirname + '/build',
+    filename: './&#91;name].js'
+  },
+  module: {
+    loaders: &#91;
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: 'babel-loader',
+        query: {
+          presets: &#91;'es2015']
+        }
+      }
+    ]
+  }
+
+};</code></pre>
+
+
+
+<p>準備完了。</p>
+
+
+
+<h2 class="wp-block-heading">REST APIを試してみる</h2>
+
+
+
+<p>実際に値が返ってくるのかを試してみます、といってもこちらは簡単です。WordPressが入っているサイトで「***.com/wp-json/wp/v2/posts/」といった具合にURLを叩くだけです。</p>
+
+
+
+<p>このブログだと「<a href="http://www.kisjam.com/blog/wp-json/wp/v2/posts/">http://www.kisjam.com/blog/wp-json/wp/v2/posts/</a>」ですね、投稿データが10件返ってきます。後はこのデータをaxiosで処理してVueを使ってサイトに表示させます。</p>
+
+
+
+<h2 class="wp-block-heading">axios + Vue</h2>
+
+
+
+<p>続いてjsファイルの先頭で今回使うVueとaxiosを読み込みます、CDNで読み込んでいる場合は省略しましょう。</p>
+
+
+
+<pre class="wp-block-code"><code>import Vue from 'vue';
+import axios from 'axios';</code></pre>
+
+
+
+<pre class="wp-block-code"><code>const vue_entry = new Vue({
+  el: '#entry',
+  data: {
+    url: 'http://www.kisjam.com/blog/',
+    posts: &#91;],
+    categories: &#91;],
+    errors: &#91;]
+  },
+  created(){
+    let arr_categories = &#91;];
+    axios.get(this.url+'wp-json/wp/v2/categories/?per_page=30')
+    .then(response =&gt; {
+      this.categories = response.data
+      for (var item of this.categories) {
+        arr_categories&#91;item.id] = item.name;
+      }
+    })
+    .catch(e =&gt; {
+      this.errors.push(e)
+    });
+
+    axios.get(this.url+'wp-json/wp/v2/posts/?per_page=5')
+    .then(response =&gt; {
+      this.posts = response.data
+      for (var post of this.posts) {
+        let date = new Date(post.date);
+        let date_year = date.getFullYear();
+        let date_month = date.getMonth()
+        let date_day = date.getDate();
+        let date_publish = date_year + '.' + date_month + '.' + date_day;
+        post.categories.name = arr_categories&#91;post.categories&#91;0]];
+        post.pubdate = date_publish;
+      }
+    })
+    .catch(e =&gt; {
+      this.errors.push(e)
+    });
+  }
+});</code></pre>
+
+
+
+<pre class="wp-block-code"><code>&lt;ul class="entry" id="entry" v-if=" posts &amp;&amp; posts.length"&gt;
+  &lt;li class="entry__item" v-for="post of posts"&gt;
+    &lt;a v-bind:href="post.link"&gt;
+      &lt;p class="entry__item__date"&gt;&lt;time v-bind:datatime="post.date"&gt;{{ post.pubdate }}&lt;/time&gt;&lt;/p&gt;
+      &lt;p class="entry__item__cat"&gt;&lt;i class="icon-tag"&gt;&lt;/i&gt; {{ post.categories.name }}&lt;/p&gt;
+      &lt;p class="entry__item__ttl"&gt;{{ post.title.rendered }}&lt;/p&gt;
+    &lt;/a&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+
+
+
+<p>記事のカテゴリを取得するのにややごちゃっとしましたが最小限の構成だと下記のコードで記事のタイトルやら本文は取得できます。</p>
+
+
+
+<pre class="wp-block-code"><code>const vue_entry = new Vue({
+  el: '#entry',
+  data: {
+    url: 'http://www.kisjam.com/blog/',
+    posts: &#91;],
+    errors: &#91;]
+  },
+  created(){
+    axios.get(this.url+'wp-json/wp/v2/posts/?per_page=5')
+    .then(response =&gt; {
+      this.posts = response.data
+    })
+    .catch(e =&gt; {
+      this.errors.push(e)
+    });
+  }
+});</code></pre>
+
+
+
+<p>初めて触ってみましたが簡単そうに思えてもやはり躓きながらの実装でした、、勉強になります。</p>
+
+
+
+<h2 class="wp-block-heading">参考サイト</h2>
+
+
+
+<figure class="wp-block-embed"><div class="wp-block-embed__wrapper">
+https://www.webprofessional.jp/fetching-data-third-party-api-vue-axios/
+</div></figure>
+
+
+
+<p><a href="http://qiita.com/rsooo/items/0a9caf9ee804874eac03">http://qiita.com/rsooo/items/0a9caf9ee804874eac03</a></p>
+
+
+
+<p><a href="http://www.webopixel.net/develop/1221.html">http://www.webopixel.net/develop/1221.html</a></p>
+
+
+
+<figure class="wp-block-embed"><div class="wp-block-embed__wrapper">
+https://aloerina01.github.io/javascript/vue/2017/03/08/1.html
+</div></figure>
+
+
+
+<p><a href="http://qiita.com/sygnas/items/c0228eabbb3157766d5c">http://qiita.com/sygnas/items/c0228eabbb3157766d5c</a></p>
+</div> </div> </div> </article> <div class="block-pagination"> <p class="block-pagination__next"><a href="../" class="block-pagination__link">ブログ記事一覧に戻る</a></p> </div> </div>    </div> </main> <footer class="site-footer"> <div class="site-footer__inner"> <p class="site-footer__copyright">&copy; kisjam.com</p> </div> </footer> </div> </body></html>

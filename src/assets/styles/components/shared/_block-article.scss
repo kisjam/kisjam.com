@@ -44,8 +44,12 @@
 	}
 
 	&__date {
-		margin-top: 16px;
-		margin-bottom: 16px;
+	}
+	&__title {
+		margin-top: 8px;
+		&:not(:last-child) {
+			margin-bottom: 16px;
+		}
 	}
 	&__category {
 		margin-top: 8px;

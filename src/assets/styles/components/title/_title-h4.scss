@@ -1,0 +1,17 @@
+@use "@assets/styles/global" as *;
+
+@mixin title-h4 {
+	&:not(:first-child) {
+		margin-top: 60px;
+	}
+	margin-bottom: 16px;
+
+	&::before {
+		content: "###";
+		margin-right: 8px;
+	}
+}
+
+.title-h4 {
+	@include title-h4;
+}

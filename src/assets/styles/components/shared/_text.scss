@@ -1,9 +1,12 @@
 @use "@assets/styles/global" as *;
 
-.text {
+@mixin text {
 	&:not(:first-child) {
-		margin-top: 16px;
+		margin-top: 24px;
 	}
 
 	line-height: 1.75;
+}
+.text {
+	@include text;
 }
