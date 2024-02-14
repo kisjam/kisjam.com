@@ -14,10 +14,6 @@
 		let angle;
 		const noiseScale = 0.002;
 		const noiseOffset = 10;
-		const colors = [
-			[1, 46, 64],
-			[0, 0, 0],
-		]
 
 		p.setup = () => {
 			p.createCanvas(320, 320);
@@ -56,12 +52,10 @@
 
 			p.endShape();
 			p.pop();
-			p.filter(p.BLUR, 9);
 		}
 
 		p.draw = () => {
 			p.background(244, 245, 245);
-
 			drawBlob();
 		};
 	};
