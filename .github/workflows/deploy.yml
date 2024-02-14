@@ -1,25 +1,24 @@
 on: push
 name: Deploy website on push
 jobs:
-	build-and-deploy:
-		name: Deoploy
-		runs-on: ubuntu-latest
+  build-and-deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    steps:
+    - name: Get latest code
+      uses: actions/checkout@v3
+      
+    - name: Build project
+      run: npm install && npm run build
 
-		steps:
-		- name: Get latest code
-		  uses: actions/checkout@v3
-
-		- name: Build project
-		  run: npm install && npm run build
-
-		- name: FTP Deploy
-		  uses: SamKirkland/FTP-Deploy-Action@v4.3.4
-		  with:
-		  	server: ftp.lolipop.jp
-			username: ${{ secrets.FTP_USERNAME }}
-			password: ${{ secrets.FTP_PASSWORD }}
-			local-dir: ./dist
-			server-dir: /home/users/0/velvet.jp-kisjam/web/kisjam.com
-			protocol: ftps
-			port: 21
-			dry-run: true
+    - name: FTP Deploy
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+      with:
+        server: ftp.lolipop.jp
+        username: ${{ secrets.FTP_USERNAME }}
+        password: ${{ secrets.FTP_PASSWORD }}
+        local-dir: ./dist/
+        server-dir: /home/users/0/velvet.jp-kisjam/web/kisjam.com/
+        protocol: ftps
+        port: 21
+        dry-run: true
