@@ -26,6 +26,6 @@ jobs:
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
         local-dir: ./dist/
-        server-dir: /kisjaam.com/
+        server-dir: /kisjam.com/
         protocol: ftps
         port: 21
