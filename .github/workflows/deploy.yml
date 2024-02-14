@@ -17,8 +17,8 @@ jobs:
         server: ftp.lolipop.jp
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
-        local-dir: ./dist
-        server-dir: /home/users/0/velvet.jp-kisjam/web/kisjam.com
+        local-dir: ./dist/
+        server-dir: /home/users/0/velvet.jp-kisjam/web/kisjam.com/
         protocol: ftps
         port: 21
         dry-run: true
