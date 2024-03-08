@@ -1,4 +1,6 @@
-on: push
+on:
+  push:
+    branches: ["main"]
 name: Deploy website on push
 jobs:
   build-and-deploy:
@@ -7,7 +9,13 @@ jobs:
     steps:
     - name: Get latest code
       uses: actions/checkout@v3
-      
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version-file: .node-version
+        cache: "npm"
+
     - name: Build project
       run: npm install && npm run build
 
@@ -18,7 +26,6 @@ jobs:
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
         local-dir: ./dist/
-        server-dir: /home/users/0/velvet.jp-kisjam/web/kisjam.com/
+        server-dir: /kisjam.com/
         protocol: ftps
         port: 21
-        dry-run: true
