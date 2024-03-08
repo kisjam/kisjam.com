@@ -5,9 +5,10 @@ import { getArchives } from "../utils/api";
 
 const categories = await getCategories();
 const archives = await getArchives();
+const {title} = Astro.props;
 
 ---
-<DefaultLayout>
+<DefaultLayout title={title}>
 	<slot />
 
 	<!-- <section class="block-box">

@@ -51,5 +51,36 @@
 		ul {
 			@include list-disc.list-disc;
 		}
+		code {
+			background-color: rgba($color-black, 0.1);
+			padding: 2px 8px;
+			border-radius: $radius;
+		}
+		.wp-block-code {
+			&:not(:first-child) {
+				margin-top: 24px;
+			}
+
+			line-height: 1.75;
+			// background-color: $color-white;
+			background-color: rgba($color-black, 0.1);
+			border-radius: $radius;
+			padding: 16px;
+			overflow-x: auto;
+
+			code {
+				background: none;
+				padding: 0;
+			}
+		}
+	}
+	.wp-block-image {
+		&:not(:first-child) {
+			margin-top: 24px;
+		}
+
+		img {
+			border-radius: $radius;
+		}
 	}
 }

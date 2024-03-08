@@ -5,12 +5,14 @@ import Footer from '../components/Footer.astro';
 import Icon from '../components/Icon.astro';
 import GtmHead from '../components/GtmHead.astro';
 import GtmBody from '../components/GtmBody.astro';
+
+const {title} = Astro.props
 ---
 
 <html lang="ja">
 	<head>
 		<GtmHead />
-		<Head />
+		<Head title={title}>
 	</head>
 	<body>
 		<GtmBody />
