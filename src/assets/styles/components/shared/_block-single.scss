@@ -52,6 +52,7 @@
 			@include list-disc.list-disc;
 		}
 		code {
+			white-space: pre-wrap;
 			background-color: rgba($color-black, 0.1);
 			padding: 2px 8px;
 			border-radius: $radius;
