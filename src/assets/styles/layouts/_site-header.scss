@@ -19,5 +19,66 @@
 		flex-grow: 1;
 	}
 	&__nav {
+		@include mq(md) {
+			position: absolute;
+			left: 0;
+			top: 72px;
+			width: 100%;
+			display: none;
+			&.-open {
+				display: block;
+			}
+		}
+	}
+	&__menu-button {
+		display: none;
+		@include mq(md) {
+			position: relative;
+			display: block;
+			width: var(--height-block);
+			height: var(--height-block);
+			padding: 0;
+			border: none;
+			background-color: $color-gray;
+			border-radius: $radius;
+			margin: 0;
+			cursor: pointer;
+
+			&::before,
+			&::after,
+			span {
+				content: "";
+				position: absolute;
+				left: 50%;
+				width: 24px;
+				height: 2px;
+				background-color: $color-black;
+			}
+
+			&::before {
+				top: 50%;
+				transform: translate(-50%, -8px);
+			}
+			span {
+				top: 50%;
+				transform: translate(-50%, -50%);
+			}
+			&::after {
+				top: 50%;
+				transform: translate(-50%, 6px);
+			}
+
+			&[aria-expanded="true"] {
+				&::before {
+					transform: translate(-50%, -50%) rotate(45deg);
+				}
+				span {
+					opacity: 0;
+				}
+				&::after {
+					transform: translate(-50%, -50%) rotate(-45deg);
+				}
+			}
+		}
 	}
 }

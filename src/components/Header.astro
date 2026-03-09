@@ -8,12 +8,15 @@
 
 		<div class="site-header__skeleton"></div>
 
-		<div class="site-header__nav">
+		<button class="site-header__menu-button" aria-expanded="false" aria-controls="site-header-nav" aria-label="メニュー">
+			<span></span>
+		</button>
+
+		<div class="site-header__nav" id="site-header-nav">
 			<nav class="header-nav">
 				<ul class="header-nav__list">
-					<li class="header-nav__list-item"><a href="/" class="header-nav__link">HOME</a></li>
-					<li class="header-nav__list-item"><a href="/blog/" class="header-nav__link">BLOG</a></li>
-					<!-- <li class="header-nav__list-item"><a href="/about/" class="header-nav__link">ABOUT</a></li> -->
+					<li class="header-nav__list-item -link"><a href="/" class="header-nav__link">HOME</a></li>
+					<li class="header-nav__list-item -link"><a href="/blog/" class="header-nav__link">BLOG</a></li>
 					<li class="header-nav__list-item">
 						<a href="https://github.com/kisjam/" target="_blank" class="header-nav__link-icon">
 							<svg class="icon -github" aria-label="kisjam" width="32" height="32">
