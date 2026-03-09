@@ -7,5 +7,9 @@
 
 	&__inner {
 		padding: 32px;
+
+		@include mq(md) {
+			padding: 24px;
+		}
 	}
 }

@@ -5,12 +5,27 @@
 	color: rgba($color-black, 0.7);
 	font-size: rem(14);
 
+	@include mq(md) {
+		display: grid;
+		grid-template-columns: auto 1fr;
+		gap: 4px 16px;
+	}
+
 	&__published {
 		margin-right: 8px;
+
+		@include mq(md) {
+			margin-right: 0;
+		}
 	}
 
 	&__updated {
 		margin-left: 16px;
 		margin-right: 8px;
+
+		@include mq(md) {
+			margin-left: 0;
+			margin-right: 0;
+		}
 	}
 }

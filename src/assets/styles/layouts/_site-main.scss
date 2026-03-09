@@ -3,11 +3,14 @@
 .site-main {
 	display: grid;
 	gap: $gap;
-	grid-template-columns: auto 640px auto;
 	padding-right: $gap;
 	padding-left: $gap;
 
-	@include mq(sm) {
+	@include mq(md, true) {
+		grid-template-columns: auto 640px auto;
+	}
+
+	@include mq(md) {
 		grid-template-columns: 1fr;
 	}
 
@@ -17,7 +20,7 @@
 		background-color: $color-gray;
 		border-radius: $radius;
 
-		@include mq(sm) {
+		@include mq(md) {
 			content: none;
 		}
 	}

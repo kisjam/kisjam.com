@@ -12,6 +12,11 @@
 		padding: 24px 32px;
 		text-decoration: none;
 
+		@include mq(md) {
+			padding: 24px 24px;
+			gap: 24px;
+		}
+
 		&::after {
 			content: "";
 			position: absolute;
@@ -28,6 +33,10 @@
 	&__header {
 		width: 128px;
 		flex-shrink: 0;
+
+		@include mq(md) {
+			width: 80px;
+		}
 	}
 
 	&__icon {

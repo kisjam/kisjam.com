@@ -5,7 +5,17 @@
 		display: flex;
 		gap: $gap;
 
+		@include mq(md) {
+			padding: 0 4px 4px;
+			background-color: $color-black;
+		}
+
 		&-item {
+			&.-link {
+				@include mq(md) {
+					width: 100%;
+				}
+			}
 		}
 	}
 	&__link {
@@ -16,8 +26,15 @@
 		text-decoration: none;
 		height: var(--height-block);
 		align-items: center;
+		justify-content: center;
 		padding-right: 40px;
 		padding-left: 40px;
+
+		@include mq(md) {
+			padding-right: 0;
+			padding-left: 0;
+			width: 100%;
+		}
 
 		&-icon {
 			display: flex;
