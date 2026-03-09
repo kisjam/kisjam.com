@@ -1,4 +1,4 @@
-export function formatDate(dateString) {
+export function formatDate(dateString: string): string {
 	const date = new Date(dateString);
 	const year = date.getFullYear();
 	const month = date.getMonth() + 1;
@@ -10,7 +10,7 @@ export function formatDate(dateString) {
 	return `${year}/${formattedMonth}/${formattedDay}`;
 }
 
-export function isSameDay(date1, date2) {
+export function isSameDay(date1: string, date2: string): boolean {
 	const d1 = new Date(date1);
 	const d2 = new Date(date2);
 	return (

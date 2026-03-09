@@ -1,8 +1,6 @@
 ---
 import DefaultLayout from "../layouts/DefaultLayout.astro";
-import Sketch from "../components/Sketch.astro";
-import { getLatestPosts } from "../utils/api.js";
-import { Debug } from 'astro/components';
+import { getLatestPosts } from "../utils/api.ts";
 import BlockArticle from "src/components/BlockArticle.astro";
 
 const { posts } = await getLatestPosts();
@@ -10,8 +8,7 @@ const { posts } = await getLatestPosts();
 ---
 
 <DefaultLayout title="kisjam.com">
-	<Sketch />
-	<section class="container-block">
+<section class="container-block">
 		<!-- <h2 class="title-block-h2"><a href="/about/" class="title-block-h2__link">ABOUT</a></h2> -->
 
 

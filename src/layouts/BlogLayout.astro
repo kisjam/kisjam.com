@@ -1,10 +1,6 @@
 ---
 import DefaultLayout from "./DefaultLayout.astro";
-import { getCategories } from "../utils/api";
-import { getArchives } from "../utils/api";
 
-const categories = await getCategories();
-const archives = await getArchives();
 const {title} = Astro.props;
 
 ---

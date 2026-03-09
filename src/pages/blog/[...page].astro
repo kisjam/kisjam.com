@@ -1,10 +1,10 @@
 ---
 import BlogLayout from "../../layouts/BlogLayout.astro";
-import { getAllPosts } from "../../utils/api.js";
+import { getAllPostsMeta } from "../../utils/api.ts";
 import BlockArticle from "../../components/BlockArticle.astro";
 
 export async function getStaticPaths({ paginate }) {
-	const allPosts = await getAllPosts();
+	const allPosts = await getAllPostsMeta();
 	return paginate(allPosts, {
       pageSize: 10
     });

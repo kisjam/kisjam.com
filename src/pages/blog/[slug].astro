@@ -1,7 +1,7 @@
 ---
 import BlogLayout from "../../layouts/BlogLayout.astro";
-import { getAllPosts } from "../../utils/api.js";
-import { formatDate, isSameDay } from '../../utils/date';
+import { getAllPosts } from "../../utils/api.ts";
+import { formatDate, isSameDay } from '../../utils/date.ts';
 const { post } = Astro.props;
 
 export async function getStaticPaths() {
