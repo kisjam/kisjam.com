@@ -1,9 +1,10 @@
 ---
 import '@assets/styles/style.scss'
-const {title} = Astro.props
+const { title, description = 'Hello, I am Akihiro Takaoka, a freelance front-end engineer.' } = Astro.props
 ---
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="format-detection" content="telephone=no">
 <title>{title}</title>
+<meta name="description" content={description}>
 <!-- <link rel="stylesheet" href={styles}> -->
