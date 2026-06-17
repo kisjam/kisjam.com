@@ -7,10 +7,10 @@ const blog = defineCollection({
 	loader: glob({ pattern: "*.md", base: "./src/content/blog" }),
 	schema: z.object({
 		title: z.string(),
-		slug: z.string(),
+		slug: z.string().regex(/^[a-z0-9-]+$/),
 		date: z.coerce.date(),
-		modified: z.coerce.date(),
-		emoji: z.string().default(""),
+		modified: z.coerce.date().optional(),
+		emoji: z.string().min(1),
 		excerpt: z.string().default(""),
 		categories: z.array(taxonomy).default([]),
 		tags: z.array(taxonomy).default([]),

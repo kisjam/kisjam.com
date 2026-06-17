@@ -2,7 +2,8 @@
 import { formatDate, isSameDay } from '../utils/date';
 import { postUri, type BlogPost } from '../utils/posts';
 const { post } = Astro.props as { post: BlogPost };
-const { title, date, modified, categories, tags, emoji } = post.data;
+const { title, date, categories, tags, emoji } = post.data;
+const modified = post.data.modified ?? date;
 const uri = postUri(post);
 ---
 <article class="block-article">

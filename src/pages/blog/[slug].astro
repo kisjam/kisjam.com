@@ -1,23 +1,44 @@
 ---
 import BlogLayout from "../../layouts/BlogLayout.astro";
-import { getCollection, render } from "astro:content";
+import { render } from "astro:content";
+import { getSortedPosts, postUri } from "../../utils/posts";
 import { formatDate, isSameDay } from '../../utils/date.ts';
 
 export async function getStaticPaths() {
-	const posts = await getCollection("blog");
-	return posts.map((post) => ({
+	const posts = await getSortedPosts();
+	return posts.map((post, i) => ({
 		params: { slug: post.data.slug },
-		props: { post },
+		props: {
+			post,
+			newer: i > 0 ? posts[i - 1] : null,
+			older: i < posts.length - 1 ? posts[i + 1] : null,
+		},
 	}));
 }
 
-const { post } = Astro.props;
-const { title, emoji, date, modified, categories, tags, excerpt } = post.data;
+const { post, newer, older } = Astro.props;
+const { title, emoji, date, categories, tags, excerpt } = post.data;
+const modified = post.data.modified ?? date;
 const { Content } = await render(post);
+
+const canonical = new URL(postUri(post), Astro.site).href;
+const jsonLd = {
+	"@context": "https://schema.org",
+	"@type": "BlogPosting",
+	headline: title,
+	datePublished: date.toISOString(),
+	dateModified: modified.toISOString(),
+	author: { "@type": "Person", name: "Akihiro Takaoka" },
+	publisher: { "@type": "Person", name: "Akihiro Takaoka" },
+	mainEntityOfPage: canonical,
+	url: canonical,
+	...(excerpt ? { description: excerpt } : {}),
+};
 ---
 <BlogLayout title={title + ' | kisjam.com'} description={excerpt || undefined}>
+	<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 	<div class="container-block">
-	<article class="block-single">
+	<article class="block-single" data-pagefind-body>
 		<figure class="block-single__emoji">{ emoji }</figure>
 		<div class="block-single__body">
 			<div class="block-single__title">
@@ -62,7 +83,11 @@ const { Content } = await render(post);
 		</div>
 	</article>
 	<div class="block-pagination">
-			<p class="block-pagination__next"><a href="../" class="block-pagination__link">ブログ記事一覧に戻る</a></p>
-		</div>
-		</div>
+		{older ? <p class="block-pagination__prev"><a href={postUri(older)} class="block-pagination__link">← { older.data.title }</a></p> : null}
+		{newer ? <p class="block-pagination__next"><a href={postUri(newer)} class="block-pagination__link">{ newer.data.title } →</a></p> : null}
+	</div>
+	<div class="block-pagination">
+		<p class="block-pagination__next"><a href="/blog/" class="block-pagination__link">ブログ記事一覧に戻る</a></p>
+	</div>
+	</div>
 </BlogLayout>

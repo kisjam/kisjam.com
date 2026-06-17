@@ -1,0 +1,16 @@
+---
+import DefaultLayout from "../layouts/DefaultLayout.astro";
+---
+<DefaultLayout title="検索 | kisjam.com" description="kisjam.com 内の記事を検索">
+	<section class="container-block">
+		<h1 class="title-block-h1"><span class="title-block-h1__inner">SEARCH</span></h1>
+		<div id="search"></div>
+	</section>
+	<link rel="stylesheet" href="/pagefind/pagefind-ui.css" />
+	<script is:inline src="/pagefind/pagefind-ui.js"></script>
+	<script is:inline>
+		window.addEventListener("DOMContentLoaded", () => {
+			new PagefindUI({ element: "#search", showSubResults: true, translations: { placeholder: "記事を検索" } });
+		});
+	</script>
+</DefaultLayout>

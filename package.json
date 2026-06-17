@@ -4,7 +4,7 @@
   "description": "my portfolio website.",
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build"
+    "build": "astro build && pagefind --site dist"
   },
   "author": "kisjam",
   "license": "ISC",
@@ -14,6 +14,7 @@
     "astro": "^6.4.7"
   },
   "devDependencies": {
+    "pagefind": "^1.5.2",
     "prettier": "^3.8.4",
     "prettier-plugin-astro": "^0.14.1",
     "sass": "^1.101.0",
