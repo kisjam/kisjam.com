@@ -1,44 +1,29 @@
 ---
-import { getAllPostsMeta } from "../../../../../utils/api.ts";
+import { getSortedPosts, postUri, jstParts } from "../../../../../utils/posts";
 import TwoColumnLayout from "../../../../../layouts/TwoColumnLayout.astro";
 
 export async function getStaticPaths({ paginate }) {
-
-	const allPosts = await getAllPostsMeta();
-	const allPostsByArchive = allPosts.reduce((acc, post) => {
-		const date = new Date(post.date);
-		const year = date.getFullYear();
-		const month = date.getMonth() + 1;
-		const key = `${year}-${month}`;
-		if (!acc[key]) {
-			acc[key] = [];
-		}
-		acc[key].push(post);
-		return acc;
-	}, {});
-
-	return Object.keys(allPostsByArchive).map((key) => {
+	const posts = await getSortedPosts();
+	const byArchive = new Map(); // "YYYY-M" -> posts[]
+	for (const post of posts) {
+		const [year, month] = jstParts(post.data.date);
+		const key = `${year}-${Number(month)}`;
+		if (!byArchive.has(key)) byArchive.set(key, []);
+		byArchive.get(key).push(post);
+	}
+	return [...byArchive.entries()].flatMap(([key, list]) => {
 		const [year, month] = key.split("-");
-
-		return paginate(allPostsByArchive[key], {
-			pageSize: 10,
-			params: {
-				year: year,
-				month: month
-			}
-		});
-
+		return paginate(list, { pageSize: 10, params: { year, month } });
 	});
-};
+}
 
 const { page } = Astro.props;
-const params = Astro.params;
 ---
 
 <TwoColumnLayout>
 <h1>{page.currentPage}ページ</h1>
 <ul>
-	{page.data.map(post => <li>{post.title}</li>)}
+	{page.data.map(post => <li><a href={postUri(post)}>{post.data.title}</a></li>)}
 </ul>
 {page.url.prev ? <a href={page.url.prev}>Previous</a> : null}
 {page.url.next ? <a href={page.url.next}>Next</a> : null}

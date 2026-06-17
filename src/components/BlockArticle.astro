@@ -1,11 +1,14 @@
 ---
 import { formatDate, isSameDay } from '../utils/date';
-const { title, date, modified, uri, categories, tags, acfEmoji } = Astro.props.post;
+import { postUri, type BlogPost } from '../utils/posts';
+const { post } = Astro.props as { post: BlogPost };
+const { title, date, modified, categories, tags, emoji } = post.data;
+const uri = postUri(post);
 ---
 <article class="block-article">
 	<a href={ uri } class="block-article__link">
 		<div class="block-article__header">
-			<p class="block-article__icon">{ acfEmoji }</p>
+			<p class="block-article__icon">{ emoji }</p>
 		</div>
 		<div class="block-article__body">
 			<div class="block-article__date">
@@ -23,19 +26,19 @@ const { title, date, modified, uri, categories, tags, acfEmoji } = Astro.props.p
 			</div>
 			<p class="block-article__title">{ title }</p>
 
-			{categories.nodes.length > 0 && (
+			{categories.length > 0 && (
 				<div class="block-article__category">
 					<ul class="article-category">
-						{ categories.nodes.map( (category) => (
+						{ categories.map( (category) => (
 							<li class="article-category__item">{ category.name }</li>
 						))}
 					</ul>
 				</div>
 			)}
-			{tags.nodes.length > 0 && (
+			{tags.length > 0 && (
 				<div class="block-article__tag">
 					<ul class="article-tag">
-						{ tags.nodes.map( (tag) => (
+						{ tags.map( (tag) => (
 							<li class="article-tag__item">{ tag.name }</li>
 						))}
 					</ul>

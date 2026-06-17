@@ -1,21 +1,11 @@
-export function formatDate(dateString: string): string {
-	const date = new Date(dateString);
-	const year = date.getFullYear();
-	const month = date.getMonth() + 1;
-	const day = date.getDate();
+import { jstParts } from "./posts";
 
-	const formattedMonth = month < 10 ? `0${month}` : month;
-	const formattedDay = day < 10 ? `0${day}` : day;
-
-	return `${year}/${formattedMonth}/${formattedDay}`;
+// JST(Asia/Tokyo)基準で YYYY/MM/DD 表示。ビルド環境のTZ(CIはUTC)に依存しない。
+export function formatDate(dateString: string | Date): string {
+	const [year, month, day] = jstParts(new Date(dateString));
+	return `${year}/${month}/${day}`;
 }
 
-export function isSameDay(date1: string, date2: string): boolean {
-	const d1 = new Date(date1);
-	const d2 = new Date(date2);
-	return (
-		d1.getFullYear() === d2.getFullYear() &&
-		d1.getMonth() === d2.getMonth() &&
-		d1.getDate() === d2.getDate()
-	);
+export function isSameDay(date1: string | Date, date2: string | Date): boolean {
+	return formatDate(date1) === formatDate(date2);
 }

@@ -1,67 +1,63 @@
 ---
 import BlogLayout from "../../layouts/BlogLayout.astro";
-import { getAllPosts } from "../../utils/api.ts";
+import { getCollection, render } from "astro:content";
 import { formatDate, isSameDay } from '../../utils/date.ts';
-const { post } = Astro.props;
 
 export async function getStaticPaths() {
-	const allPosts = await getAllPosts();
-	return await allPosts.map((post)=>{
-		return {
-			params: {
-				slug: post.slug,
-			},
-			props: {
-				post: post
-			}
-		}
-	});
+	const posts = await getCollection("blog");
+	return posts.map((post) => ({
+		params: { slug: post.data.slug },
+		props: { post },
+	}));
 }
 
+const { post } = Astro.props;
+const { title, emoji, date, modified, categories, tags } = post.data;
+const { Content } = await render(post);
 ---
-<BlogLayout title={post.title + ' | kisjam.com'}>
+<BlogLayout title={title + ' | kisjam.com'}>
 	<div class="container-block">
 	<article class="block-single">
-		<figure class="block-single__emoji">{ post.acfEmoji }</figure>
+		<figure class="block-single__emoji">{ emoji }</figure>
 		<div class="block-single__body">
 			<div class="block-single__title">
-				<h1 class="title-h1">{ post.title }</h1>
+				<h1 class="title-h1">{ title }</h1>
 			</div>
 			<div class="block-single__date">
 				<dl class="article-date">
 					<dt class="article-date__published">公開日</dt>
-					<dd class="article-date__date">{ formatDate(post.date) }</dd>
+					<dd class="article-date__date">{ formatDate(date) }</dd>
 					{
-						!isSameDay(post.date, post.modified) &&
+						!isSameDay(date, modified) &&
 						(
 							<dt class="article-date__updated">最終更新日</dt>
-							<dd class="article-date__date">{ formatDate(post.modified) }</dd>
+							<dd class="article-date__date">{ formatDate(modified) }</dd>
 						)
 					}
 				</dl>
 			</div>
 
-			{post.categories.nodes.length > 0 && (
+			{categories.length > 0 && (
 				<div class="block-single__category">
 					<ul class="article-category">
-						{ post.categories.nodes.map( (category) => (
+						{ categories.map( (category) => (
 							<li class="article-category__item">{ category.name }</li>
 						))}
 					</ul>
 				</div>
 			)}
 
-			{post.tags.nodes.length > 0 && (
+			{tags.length > 0 && (
 				<div class="block-single__tag">
 					<ul class="article-tag">
-						{ post.tags.nodes.map( (tag) => (
+						{ tags.map( (tag) => (
 							<li class="article-tag__item">{ tag.name }</li>
 						))}
 					</ul>
 				</div>
 			)}
 			<div class="block-single__content">
-				<div class="article-content" set:html={post.content}></div>
+				<div class="article-content"><Content /></div>
 			</div>
 		</div>
 	</article>

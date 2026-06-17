@@ -1,26 +1,27 @@
 ---
-import { getAllPostsByCategory } from "../../../../utils/api.ts";
+import { getSortedPosts, postUri } from "../../../../utils/posts";
 import TwoColumnLayout from "../../../../layouts/TwoColumnLayout.astro";
 
 export async function getStaticPaths({ paginate }) {
-
-	const allPosts = await getAllPostsByCategory();
-
-	return allPosts.map((category)=> {
-		return paginate(category.posts.nodes, {
-			pageSize: 10,
-			params: { slug: category.slug }
-		});
-	})
+	const posts = await getSortedPosts();
+	const byCategory = new Map(); // slug -> posts[]
+	for (const post of posts) {
+		for (const cat of post.data.categories) {
+			if (!byCategory.has(cat.slug)) byCategory.set(cat.slug, []);
+			byCategory.get(cat.slug).push(post);
+		}
+	}
+	return [...byCategory.entries()].flatMap(([slug, list]) =>
+		paginate(list, { pageSize: 10, params: { slug } })
+	);
 }
 const { page } = Astro.props;
-const params = Astro.params;
 ---
 
 <TwoColumnLayout>
 <h1>{page.currentPage}ページ</h1>
 <ul>
-	{page.data.map(post => <li>{post.title}</li>)}
+	{page.data.map(post => <li><a href={postUri(post)}>{post.data.title}</a></li>)}
 </ul>
 {page.url.prev ? <a href={page.url.prev}>Previous</a> : null}
 {page.url.next ? <a href={page.url.next}>Next</a> : null}
