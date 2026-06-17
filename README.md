@@ -14,6 +14,27 @@ npm run build    # astro build && pagefind --site dist → dist/ に出力
 - Node: `.node-version`（24.16.0）
 - 検索: [Pagefind](https://pagefind.app/)（ビルド時に `dist/pagefind/` を生成）
 
+## 開発フロー（ブランチ運用）
+
+- `main` … 本番。push すると Cloudflare が自動でビルド＆公開する（＝触ると本番が変わる）
+- `develop` … 開発用。作業はここで行い、確認は手元の `npm run dev`
+- 非本番ブランチは Cloudflare のビルド対象外（Worker Build 設定で無効化済み）→ push してもデプロイされない
+
+```sh
+git switch develop          # 開発はこのブランチで
+# ... 編集 ...
+npm run dev                 # 手元で確認
+git add -A && git commit    # コミット
+git push                    # develop へ（デプロイは走らない）
+
+# 本番反映するとき
+git switch main
+git merge develop
+git push                    # ← main への push で本番デプロイ
+```
+
+PR を使う場合は `develop` → `main` の Pull Request を切る。
+
 ## デプロイ
 
 **Cloudflare Workers (Static Assets) の Git連携ビルド**。`main` への push を Cloudflare が
