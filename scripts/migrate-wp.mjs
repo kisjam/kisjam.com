@@ -2,7 +2,7 @@
  * WordPress(WPGraphQL) → Markdown 完全移行スクリプト
  *
  *  - 公開済みの全記事を取得し、本文HTMLをMarkdownへ変換
- *  - 記事内の画像を public/uploads/ にローカル取り込みし、参照を /uploads/... に書き換え
+ *  - 記事内の画像を src/assets/blog/uploads/ に取り込み、本文を相対パス参照に書き換え(Astro画像最適化対象)
  *  - 各種埋め込み(YouTube/Twitter/oEmbed等)はWP固有の壊れるマークアップを捨て、URLリンクへ変換
  *  - src/content/blog/<slug>.md として frontmatter 付きで出力
  *
@@ -20,7 +20,10 @@ import { gfm } from "turndown-plugin-gfm";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, "..");
 const OUT_DIR = join(ROOT, "src/content/blog");
-const PUBLIC_DIR = join(ROOT, "public");
+// 画像は src/assets 配下に置き Astro の画像最適化パイプラインに乗せる。
+// 本文(src/content/blog/<slug>.md)からは相対パスで参照する。
+const ASSETS_IMG_DIR = join(ROOT, "src/assets/blog/uploads");
+const IMG_REF_PREFIX = "../../assets/blog/uploads/";
 
 // .env から WORDPRESS_API_URL を拾う（簡易パース）
 async function resolveApiUrl() {
@@ -62,28 +65,23 @@ async function fetchAllPosts(API_URL) {
 }
 
 // ---- 画像のローカルパス算出 -------------------------------------------------
-// https://blog.kisjam.com/wp-content/uploads/2025/03/foo.jpg -> /uploads/2025/03/foo.jpg
-function toLocalImagePath(remoteUrl) {
+// https://blog.kisjam.com/wp-content/uploads/2025/03/foo.jpg -> 2025/03/foo.jpg
+function imageSuffix(remoteUrl) {
 	try {
 		const u = new URL(remoteUrl);
 		const idx = u.pathname.indexOf("/wp-content/uploads/");
 		if (idx !== -1) {
-			return "/uploads/" + decodeURIComponent(u.pathname.slice(idx + "/wp-content/uploads/".length));
+			return decodeURIComponent(u.pathname.slice(idx + "/wp-content/uploads/".length));
 		}
 		// uploads 配下でない画像はホスト名込みで退避
-		return "/uploads/_external/" + u.host + decodeURIComponent(u.pathname);
+		return "_external/" + u.host + decodeURIComponent(u.pathname);
 	} catch {
 		return null;
 	}
 }
 
-// URLとして安全な形（日本語ファイル名対策）
-function encodePath(localPath) {
-	return localPath.split("/").map((seg, i) => (i === 0 ? seg : encodeURIComponent(seg))).join("/");
-}
-
-async function downloadImage(remoteUrl, localPath) {
-	const dest = join(PUBLIC_DIR, localPath.replace(/^\//, ""));
+async function downloadImage(remoteUrl, suffix) {
+	const dest = join(ASSETS_IMG_DIR, suffix);
 	if (existsSync(dest)) return true; // 既に取得済み
 	const res = await fetch(remoteUrl);
 	if (!res.ok) throw new Error(`HTTP ${res.status}`);
@@ -113,12 +111,11 @@ function createTurndown(imageMap, droppedSrcs, stats) {
 		},
 	});
 
-	// 取得できた画像→ローカルパス / DL失敗(404等)→null(画像記法ごと削除)
+	// 取得できた画像→相対参照パス / DL失敗(404等)→null(画像記法ごと削除)
 	const mapSrc = (src) => {
 		if (!src) return src;
 		if (droppedSrcs.has(src)) return null;
-		const local = imageMap.get(src);
-		return local ? encodePath(local) : src;
+		return imageMap.get(src) ?? src;
 	};
 
 	// YouTube embed URL を watch URL に正規化
@@ -274,8 +271,8 @@ async function main() {
 	const posts = await fetchAllPosts(API_URL);
 	console.log(`取得: ${posts.length} 記事`);
 
-	// 1) 画像URLを全収集 → ダウンロード → マップ作成
-	const imageMap = new Map(); // remoteUrl -> localPath
+	// 1) 画像URLを全収集 → ダウンロード(src/assets) → 相対参照マップ作成
+	const imageMap = new Map(); // remoteUrl -> 本文用の相対参照パス
 	const droppedSrcs = new Set(); // DL失敗(404等) → 本文から削除
 	const reImg = /<img[^>]*\bsrc=["']([^"']+)["']/gi;
 	const allSrcs = new Set();
@@ -287,16 +284,16 @@ async function main() {
 	let imgOk = 0,
 		imgFail = 0;
 	for (const src of allSrcs) {
-		const local = toLocalImagePath(src);
-		if (!local) {
+		const suffix = imageSuffix(src);
+		if (!suffix) {
 			console.warn("  パス算出不可 → 削除:", src);
 			droppedSrcs.add(src);
 			imgFail++;
 			continue;
 		}
 		try {
-			await downloadImage(src, local);
-			imageMap.set(src, local);
+			await downloadImage(src, suffix);
+			imageMap.set(src, IMG_REF_PREFIX + suffix);
 			imgOk++;
 		} catch (e) {
 			console.warn(`  DL失敗(${e.message}) → 本文から削除:`, src);
@@ -335,7 +332,7 @@ async function main() {
 
 	console.log("\n=== 完了 ===");
 	console.log(`記事:   ${written} 件 → src/content/blog/`);
-	console.log(`画像:   成功 ${imgOk} / 失敗 ${imgFail} → public/uploads/`);
+	console.log(`画像:   成功 ${imgOk} / 失敗 ${imgFail} → src/assets/blog/uploads/`);
 	console.log(`埋め込み: ${stats.embeds} 件をリンク変換`);
 	if (shortBodies) console.log(`⚠ 本文が短い記事: ${shortBodies} 件（要確認）`);
 }

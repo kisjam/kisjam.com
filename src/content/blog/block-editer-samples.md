@@ -31,13 +31,13 @@ tags: []
 2.  ちくわ
 3.  大根
 
-![](/uploads/2023/08/shikun20220402_122123_TP_V-1024x649.webp)
+![](../../assets/blog/uploads/2023/08/shikun20220402_122123_TP_V-1024x649.webp)
 
 *中央寄せの画像*
 
-![](/uploads/2023/08/shikun20220402_122123_TP_V-1024x649.webp)
+![](../../assets/blog/uploads/2023/08/shikun20220402_122123_TP_V-1024x649.webp)
 
-![](/uploads/2023/08/shikun20220402_122123_TP_V-1024x649.webp)
+![](../../assets/blog/uploads/2023/08/shikun20220402_122123_TP_V-1024x649.webp)
 
 <https://www.youtube.com/watch?v=82v187I46PM>
 
