@@ -7,7 +7,6 @@
  *  - src/content/blog/<slug>.md として frontmatter 付きで出力
  *
  *  使い方:  WORDPRESS_API_URL=... node scripts/migrate-wp.mjs
- *           (未指定時は .env を読まないので環境変数で渡すか、下の DEFAULT_API を使う)
  */
 
 import { writeFile, mkdir, readFile } from "node:fs/promises";
