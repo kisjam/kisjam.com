@@ -1,10 +1,12 @@
 import { defineConfig } from 'astro/config'
 import { fileURLToPath } from 'node:url'
+import sitemap from '@astrojs/sitemap'
 
 const assetsUrl = new URL('./src/assets/', import.meta.url)
 
 export default defineConfig({
   site: 'https://kisjam.com',
+  integrations: [sitemap()],
   image: {
     layout: 'constrained',
   },

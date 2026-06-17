@@ -12,10 +12,10 @@ export async function getStaticPaths() {
 }
 
 const { post } = Astro.props;
-const { title, emoji, date, modified, categories, tags } = post.data;
+const { title, emoji, date, modified, categories, tags, excerpt } = post.data;
 const { Content } = await render(post);
 ---
-<BlogLayout title={title + ' | kisjam.com'}>
+<BlogLayout title={title + ' | kisjam.com'} description={excerpt || undefined}>
 	<div class="container-block">
 	<article class="block-single">
 		<figure class="block-single__emoji">{ emoji }</figure>
