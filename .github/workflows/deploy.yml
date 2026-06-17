@@ -8,10 +8,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Get latest code
-      uses: actions/checkout@v4
+      uses: actions/checkout@v6
 
     - name: Setup Node.js
-      uses: actions/setup-node@v4
+      uses: actions/setup-node@v6
       with:
         node-version-file: .node-version
         cache: "npm"
@@ -20,7 +20,7 @@ jobs:
       run: npm ci && npm run build
 
     - name: FTP Deploy
-      uses: SamKirkland/FTP-Deploy-Action@v4.3.6
+      uses: SamKirkland/FTP-Deploy-Action@v4.4.0
       with:
         server: ftp.lolipop.jp
         username: ${{ secrets.FTP_USERNAME }}
