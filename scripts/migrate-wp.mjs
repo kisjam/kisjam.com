@@ -20,12 +20,9 @@ import { gfm } from "turndown-plugin-gfm";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, "..");
 const OUT_DIR = join(ROOT, "src/content/blog");
-// 画像は src/assets 配下に置き Astro の画像最適化パイプラインに乗せる。
-// 本文(src/content/blog/<slug>.md)からは相対パスで参照する。
 const ASSETS_IMG_DIR = join(ROOT, "src/assets/blog/uploads");
 const IMG_REF_PREFIX = "../../assets/blog/uploads/";
 
-// .env から WORDPRESS_API_URL を拾う（簡易パース）
 async function resolveApiUrl() {
 	if (process.env.WORDPRESS_API_URL) return process.env.WORDPRESS_API_URL.trim();
 	try {
@@ -36,7 +33,6 @@ async function resolveApiUrl() {
 	throw new Error("WORDPRESS_API_URL が見つかりません（環境変数 or .env で指定してください）");
 }
 
-// ---- GraphQL ---------------------------------------------------------------
 async function gql(API_URL, query) {
 	const res = await fetch(API_URL, {
 		method: "POST",
@@ -64,8 +60,6 @@ async function fetchAllPosts(API_URL) {
 	return data.posts.nodes;
 }
 
-// ---- 画像のローカルパス算出 -------------------------------------------------
-// https://blog.kisjam.com/wp-content/uploads/2025/03/foo.jpg -> 2025/03/foo.jpg
 function imageSuffix(remoteUrl) {
 	try {
 		const u = new URL(remoteUrl);
@@ -73,7 +67,6 @@ function imageSuffix(remoteUrl) {
 		if (idx !== -1) {
 			return decodeURIComponent(u.pathname.slice(idx + "/wp-content/uploads/".length));
 		}
-		// uploads 配下でない画像はホスト名込みで退避
 		return "_external/" + u.host + decodeURIComponent(u.pathname);
 	} catch {
 		return null;
@@ -82,7 +75,7 @@ function imageSuffix(remoteUrl) {
 
 async function downloadImage(remoteUrl, suffix) {
 	const dest = join(ASSETS_IMG_DIR, suffix);
-	if (existsSync(dest)) return true; // 既に取得済み
+	if (existsSync(dest)) return true;
 	const res = await fetch(remoteUrl);
 	if (!res.ok) throw new Error(`HTTP ${res.status}`);
 	const buf = Buffer.from(await res.arrayBuffer());
@@ -91,7 +84,6 @@ async function downloadImage(remoteUrl, suffix) {
 	return true;
 }
 
-// ---- Turndown 設定 ----------------------------------------------------------
 function createTurndown(imageMap, droppedSrcs, stats) {
 	const td = new TurndownService({
 		headingStyle: "atx",
@@ -101,8 +93,6 @@ function createTurndown(imageMap, droppedSrcs, stats) {
 	});
 	td.use(gfm);
 
-	// wp-block-preformatted (<pre> に <code> が無い) を fenced code block 化。
-	// 放置すると中の <VirtualHost> 等がデコードされ生HTML扱いになり描画が壊れる。
 	td.addRule("wpPreformatted", {
 		filter: (node) => node.nodeName === "PRE" && !node.querySelector("code"),
 		replacement: (_content, node) => {
@@ -111,14 +101,12 @@ function createTurndown(imageMap, droppedSrcs, stats) {
 		},
 	});
 
-	// 取得できた画像→相対参照パス / DL失敗(404等)→null(画像記法ごと削除)
 	const mapSrc = (src) => {
 		if (!src) return src;
 		if (droppedSrcs.has(src)) return null;
 		return imageMap.get(src) ?? src;
 	};
 
-	// YouTube embed URL を watch URL に正規化
 	const normalizeUrl = (url) => {
 		if (!url) return url;
 		const m = url.match(/youtube\.com\/embed\/([\w-]+)/);
@@ -126,7 +114,6 @@ function createTurndown(imageMap, droppedSrcs, stats) {
 		return url;
 	};
 
-	// 埋め込み figure → リンク化
 	td.addRule("wpEmbed", {
 		filter: (node) =>
 			node.nodeName === "FIGURE" && /wp-block-embed/.test(node.getAttribute("class") || ""),
@@ -144,7 +131,6 @@ function createTurndown(imageMap, droppedSrcs, stats) {
 		},
 	});
 
-	// 画像figure(キャプション対応)。ギャラリー(直下が図)は素通しして内側で個別処理
 	td.addRule("wpImageFigure", {
 		filter: (node) =>
 			node.nodeName === "FIGURE" &&
@@ -152,7 +138,7 @@ function createTurndown(imageMap, droppedSrcs, stats) {
 		replacement: (_content, node) => {
 			const img = Array.from(node.childNodes).find((c) => c.nodeName === "IMG");
 			const src = mapSrc(img.getAttribute("src"));
-			if (!src) return ""; // 404画像は削除
+			if (!src) return "";
 			const alt = (img.getAttribute("alt") || "").trim();
 			const cap = node.querySelector("figcaption");
 			const caption = cap ? cap.textContent.trim() : "";
@@ -162,12 +148,11 @@ function createTurndown(imageMap, droppedSrcs, stats) {
 		},
 	});
 
-	// 単独img / ギャラリー内img
 	td.addRule("wpImage", {
 		filter: "img",
 		replacement: (_content, node) => {
 			const src = mapSrc(node.getAttribute("src"));
-			if (!src) return ""; // 404画像は削除
+			if (!src) return "";
 			const alt = (node.getAttribute("alt") || "").trim();
 			return `![${alt}](${src})`;
 		},
@@ -176,45 +161,37 @@ function createTurndown(imageMap, droppedSrcs, stats) {
 	return td;
 }
 
-// ---- frontmatter ------------------------------------------------------------
 const q = (s) => '"' + String(s ?? "").replace(/\\/g, "\\\\").replace(/"/g, '\\"') + '"';
 
-// 変換後Markdown本文から綺麗なexcerptを生成（WPの二重エンコードなexcerptは使わない）
 function bodyToExcerpt(body) {
 	const text = (body || "")
-		.replace(/```[\s\S]*?```/g, " ") // コードブロック
-		.replace(/!\[[^\]]*\]\([^)]*\)/g, " ") // 画像
-		.replace(/\[([^\]]*)\]\([^)]*\)/g, "$1") // リンク→テキスト
-		.replace(/<[^>]+>/g, " ") // 生HTML
-		.replace(/[#>*_`~]/g, " ") // 記号
+		.replace(/```[\s\S]*?```/g, " ")
+		.replace(/!\[[^\]]*\]\([^)]*\)/g, " ")
+		.replace(/\[([^\]]*)\]\([^)]*\)/g, "$1")
+		.replace(/<[^>]+>/g, " ")
+		.replace(/[#>*_`~]/g, " ")
 		.replace(/\s+/g, " ")
 		.trim();
 	if (text.length <= 120) return text;
 	return text.slice(0, 120).trim() + "…";
 }
 
-// WP日時(オフセット無し)にJSTを付与。UTCビルド環境で日付がズレるのを防ぐ
 function withTz(dt) {
 	if (!dt) return dt;
 	return /[Zz]|[+-]\d{2}:?\d{2}$/.test(dt) ? dt : dt + "+09:00";
 }
 
-// 本文中の内部記事リンク(WPドメイン)を相対 /blog/<slug>/ に書き換える。
-// 既知スラッグに一致するものだけ対象（wp-json等の例示URL・外部リンクは温存）。
 function rewriteInternalLinks(body, slugSet) {
-	const tail = "(?:embed[^>)\\s]*)?"; // /embed/#?secret=... 等を吸収
+	const tail = "(?:embed[^>)\\s]*)?";
 	const known = (slug) => slugSet.has(slug);
-	// 1) オートリンク <URL> → 正しいMarkdownリンクに
 	body = body.replace(
 		new RegExp(`<https?://(?:blog|www)\\.kisjam\\.com/blog/([a-z0-9_-]+)/${tail}>`, "gi"),
 		(m, slug) => (known(slug) ? `[/blog/${slug}/](/blog/${slug}/)` : m)
 	);
-	// 2) Markdownリンクのターゲット ](URL) → 相対に
 	body = body.replace(
 		new RegExp(`\\]\\(https?://(?:blog|www)\\.kisjam\\.com/blog/([a-z0-9_-]+)/${tail}\\)`, "gi"),
 		(m, slug) => (known(slug) ? `](/blog/${slug}/)` : m)
 	);
-	// 3) 残った裸URL → 正しいMarkdownリンクに
 	body = body.replace(
 		new RegExp(`https?://(?:blog|www)\\.kisjam\\.com/blog/([a-z0-9_-]+)/${tail}`, "gi"),
 		(m, slug) => (known(slug) ? `[/blog/${slug}/](/blog/${slug}/)` : m)
@@ -222,7 +199,6 @@ function rewriteInternalLinks(body, slugSet) {
 	return body;
 }
 
-// 見出しテキスト内の <tag> をエスケープ（描画時にHTMLタグ扱いされて消えるのを防ぐ）
 function escapeHtmlInHeadings(body) {
 	return body
 		.split("\n")
@@ -262,7 +238,6 @@ function buildFrontmatter(post, excerpt) {
 	return lines.join("\n");
 }
 
-// ---- main -------------------------------------------------------------------
 async function main() {
 	const API_URL = await resolveApiUrl();
 	console.log("API:", API_URL);
@@ -271,9 +246,8 @@ async function main() {
 	const posts = await fetchAllPosts(API_URL);
 	console.log(`取得: ${posts.length} 記事`);
 
-	// 1) 画像URLを全収集 → ダウンロード(src/assets) → 相対参照マップ作成
-	const imageMap = new Map(); // remoteUrl -> 本文用の相対参照パス
-	const droppedSrcs = new Set(); // DL失敗(404等) → 本文から削除
+	const imageMap = new Map();
+	const droppedSrcs = new Set();
 	const reImg = /<img[^>]*\bsrc=["']([^"']+)["']/gi;
 	const allSrcs = new Set();
 	for (const p of posts) {
@@ -302,7 +276,6 @@ async function main() {
 		}
 	}
 
-	// 2) 本文変換 → 書き出し
 	const stats = { embeds: 0 };
 	const td = createTurndown(imageMap, droppedSrcs, stats);
 	const slugSet = new Set(posts.map((p) => p.slug));

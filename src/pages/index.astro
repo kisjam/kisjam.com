@@ -1,7 +1,7 @@
 ---
 import DefaultLayout from "../layouts/DefaultLayout.astro";
 import { getSortedPosts } from "../utils/posts";
-import BlockArticle from "src/components/BlockArticle.astro";
+import BlockArticle from "../components/BlockArticle.astro";
 
 const posts = (await getSortedPosts()).slice(0, 5);
 
