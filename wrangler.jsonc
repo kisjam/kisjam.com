@@ -1,0 +1,10 @@
+{
+  // Cloudflare Workers (Static Assets) で Astro の静的出力 dist/ を配信する。
+  // デプロイは GitHub 連携(Workers Builds)で push 時に Cloudflare 側が自動実行する。
+  // ローカルで wrangler を叩く必要はない。
+  "name": "kisjam-com",
+  "compatibility_date": "2026-06-17",
+  "assets": {
+    "directory": "./dist"
+  }
+}
