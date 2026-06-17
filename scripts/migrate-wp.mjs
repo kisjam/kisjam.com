@@ -59,14 +59,22 @@ async function fetchAllPosts(API_URL) {
 	return data.posts.nodes;
 }
 
+function sanitizeImagePath(p) {
+	return p
+		.replace(/スクリーンショット/g, "screenshot")
+		.replace(/[^\x00-\x7F]+/g, "-")
+		.replace(/-+/g, "-");
+}
+
 function imageSuffix(remoteUrl) {
 	try {
 		const u = new URL(remoteUrl);
 		const idx = u.pathname.indexOf("/wp-content/uploads/");
-		if (idx !== -1) {
-			return decodeURIComponent(u.pathname.slice(idx + "/wp-content/uploads/".length));
-		}
-		return "_external/" + u.host + decodeURIComponent(u.pathname);
+		const raw =
+			idx !== -1
+				? decodeURIComponent(u.pathname.slice(idx + "/wp-content/uploads/".length))
+				: "_external/" + u.host + decodeURIComponent(u.pathname);
+		return sanitizeImagePath(raw);
 	} catch {
 		return null;
 	}

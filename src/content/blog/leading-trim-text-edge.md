@@ -46,11 +46,11 @@ tags: []
 
 例）line-height: 2; font-size: 16px;
 
-![](../../assets/blog/uploads/2024/04/スクリーンショット-2024-04-08-0.21.20.png)
+![](../../assets/blog/uploads/2024/04/screenshot-2024-04-08-0.21.20.png)
 
 例）line-height: 1.5; font-size: 24px;
 
-![](../../assets/blog/uploads/2024/04/スクリーンショット-2024-04-08-0.22.01.png)
+![](../../assets/blog/uploads/2024/04/screenshot-2024-04-08-0.22.01.png)
 
 ## 【2024/11/5 追記】記述が簡易になりました。
 
