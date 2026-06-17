@@ -14,7 +14,7 @@ tags: []
 直書きVer.
 
 ```
-<select name=“navLang” id=“navLang” onchange=“location.href=this.value;”><option value=“http://kisjam.com/”>日本語</option><option value=“http://kisjam.com/en/”>English</option></select>
+<select name=“navLang” id=“navLang” onchange=“location.href=this.value;”><option value=“https://kisjam.com/”>日本語</option><option value=“https://kisjam.com/en/”>English</option></select>
 ```
 
 selectの内容が変わった時（onChange）にvalueのURLに遷移する。

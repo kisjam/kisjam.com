@@ -29,7 +29,7 @@ LINEスタンプはどれだけ売れたかはわかるのですが
 
 ジャンプページを自サイトに用意しました、中身はmeta refreshとgoogle analyticsのみのシンプルなページです。読み込み1秒後にスタンプページに遷移します。
 
-[http://www.kisjam.com/line-stickers/](http://www.kisjam.com/line-stickers/)
+[https://www.kisjam.com/line-stickers/](https://www.kisjam.com/line-stickers/)
 
 ```
 <!doctype html>

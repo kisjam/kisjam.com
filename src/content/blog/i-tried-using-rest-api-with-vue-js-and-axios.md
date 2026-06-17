@@ -13,7 +13,7 @@ tags: []
 
 「[REST API](http://ja.wp-api.org/)」はWordPressの投稿データ等をHTTPリクエストで取得できる便利な仕組みです、既存の記事を更新したり取得したりと色々できます。今回はシンプルにサイトにWordPressの新着記事を任意の数だけ表示させるのが目的です、よくある日付+カテゴリ+タイトルの構成です。
 
-ちなみに「[http://www.kisjam.com/](http://www.kisjam.com/#blog)」で実際に動いています、
+ちなみに「[https://www.kisjam.com/](https://www.kisjam.com/#blog)」で実際に動いています、
 
 ## 下準備（Vueとaxiosの読み込み）
 
@@ -62,7 +62,7 @@ module.exports = {
 
 実際に値が返ってくるのかを試してみます、といってもこちらは簡単です。WordPressが入っているサイトで「\*\*\*.com/wp-json/wp/v2/posts/」といった具合にURLを叩くだけです。
 
-このブログだと「[http://www.kisjam.com/blog/wp-json/wp/v2/posts/](http://www.kisjam.com/blog/wp-json/wp/v2/posts/)」ですね、投稿データが10件返ってきます。後はこのデータをaxiosで処理してVueを使ってサイトに表示させます。
+このブログだと「[https://www.kisjam.com/blog/wp-json/wp/v2/posts/](https://www.kisjam.com/blog/wp-json/wp/v2/posts/)」ですね、投稿データが10件返ってきます。後はこのデータをaxiosで処理してVueを使ってサイトに表示させます。
 
 ## axios + Vue
 
@@ -77,7 +77,7 @@ import axios from 'axios';
 const vue_entry = new Vue({
   el: '#entry',
   data: {
-    url: 'http://www.kisjam.com/blog/',
+    url: 'https://www.kisjam.com/blog/',
     posts: [],
     categories: [],
     errors: []
@@ -133,7 +133,7 @@ const vue_entry = new Vue({
 const vue_entry = new Vue({
   el: '#entry',
   data: {
-    url: 'http://www.kisjam.com/blog/',
+    url: 'https://www.kisjam.com/blog/',
     posts: [],
     errors: []
   },

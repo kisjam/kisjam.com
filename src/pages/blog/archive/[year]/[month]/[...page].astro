@@ -1,0 +1,35 @@
+---
+import BlogLayout from "../../../../../layouts/BlogLayout.astro";
+import BlockArticle from "../../../../../components/BlockArticle.astro";
+import { getSortedPosts, jstParts } from "../../../../../utils/posts";
+
+export async function getStaticPaths({ paginate }) {
+	const posts = await getSortedPosts();
+	const byArchive = new Map();
+	for (const post of posts) {
+		const [y, m] = jstParts(post.data.date);
+		const key = `${y}-${Number(m)}`;
+		if (!byArchive.has(key)) byArchive.set(key, []);
+		byArchive.get(key).push(post);
+	}
+	return [...byArchive.entries()].flatMap(([key, list]) => {
+		const [year, month] = key.split("-");
+		return paginate(list, { pageSize: 10, params: { year, month } });
+	});
+}
+
+const { page } = Astro.props;
+const { year, month } = Astro.params;
+---
+<BlogLayout title={`${year}年${month}月の記事 | kisjam.com`}>
+	<section class="container-block">
+		<h1 class="title-block-h1"><span class="title-block-h1__inner">{year}年{month}月</span></h1>
+
+		{ page.data.map( post => <BlockArticle post={post} /> ) }
+
+		<div class="block-pagination">
+			{page.url.prev ? <p class="block-pagination__prev"><a href={page.url.prev} class="block-pagination__link">Prev</a></p> : null}
+			{page.url.next ? <p class="block-pagination__next"><a href={page.url.next} class="block-pagination__link">Next</a></p> : null}
+		</div>
+	</section>
+</BlogLayout>

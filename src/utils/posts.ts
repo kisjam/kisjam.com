@@ -18,6 +18,13 @@ export async function getCategories(): Promise<{ name: string; slug: string }[]>
 	return [...map].map(([slug, name]) => ({ name, slug }));
 }
 
+export async function getTags(): Promise<{ name: string; slug: string }[]> {
+	const posts = await getCollection("blog");
+	const map = new Map<string, string>();
+	for (const p of posts) for (const t of p.data.tags) map.set(t.slug, t.name);
+	return [...map].map(([slug, name]) => ({ name, slug }));
+}
+
 export async function getArchives(): Promise<string[]> {
 	const posts = await getCollection("blog");
 	const set = new Set<string>();

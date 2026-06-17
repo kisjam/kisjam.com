@@ -41,7 +41,7 @@ const { Content } = await render(post);
 				<div class="block-single__category">
 					<ul class="article-category">
 						{ categories.map( (category) => (
-							<li class="article-category__item">{ category.name }</li>
+							<li class="article-category__item"><a href={`/blog/category/${category.slug}/`}>{ category.name }</a></li>
 						))}
 					</ul>
 				</div>
@@ -51,7 +51,7 @@ const { Content } = await render(post);
 				<div class="block-single__tag">
 					<ul class="article-tag">
 						{ tags.map( (tag) => (
-							<li class="article-tag__item">{ tag.name }</li>
+							<li class="article-tag__item"><a href={`/blog/tag/${tag.slug}/`}>{ tag.name }</a></li>
 						))}
 					</ul>
 				</div>

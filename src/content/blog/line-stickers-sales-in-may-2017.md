@@ -48,4 +48,4 @@ tags: []
 当面はコツコツスタンプ作って各SNSを育てていく方針です。スタンプも流行というか上位に食い込んでくるようなものだと丁寧な〜や雑な〜といった使い分けができるような台詞回しがあったり可愛すぎない〜のような各種ニーズに答えるようなシリーズがあって面白いです、こういうバリエーションも増やしていけたらなと思います。
 
 LINEスタンプはこちら  
-[http://kisjam.com/line-stickers/](http://kisjam.com/line-stickers/)
+[https://kisjam.com/line-stickers/](https://kisjam.com/line-stickers/)

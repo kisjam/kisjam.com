@@ -11,8 +11,10 @@ const { title, description } = Astro.props
 
 <html lang="ja">
 	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<GtmHead />
-		<Head title={title} description={description}>
+		<Head title={title} description={description} />
 	</head>
 	<body>
 		<GtmBody />

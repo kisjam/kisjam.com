@@ -184,6 +184,7 @@ function withTz(dt) {
 function rewriteInternalLinks(body, slugSet) {
 	const tail = "(?:embed[^>)\\s]*)?";
 	const known = (slug) => slugSet.has(slug);
+	body = body.replace(/http:\/\/((?:www\.|blog\.)?kisjam\.com)/gi, "https://$1");
 	body = body.replace(
 		new RegExp(`<https?://(?:blog|www)\\.kisjam\\.com/blog/([a-z0-9_-]+)/${tail}>`, "gi"),
 		(m, slug) => (known(slug) ? `[/blog/${slug}/](/blog/${slug}/)` : m)
