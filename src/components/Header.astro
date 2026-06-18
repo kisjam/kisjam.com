@@ -1,33 +1,55 @@
 ---
-const Logo = Astro.url.pathname === '/' ? 'h1' : 'p'
+const Logo = Astro.url.pathname === '/' ? 'h1' : 'p';
 ---
-<header class="site-header">
+
+<header class="site-header" data-outline>
 	<div class="site-header__inner">
 		<div class="site-header__logo">
 			<Logo class="header-logo"><a href="/" class="header-logo__link">kisjam.com</a></Logo>
 		</div>
 
-		<div class="site-header__skeleton"></div>
+		<div class="site-header__skeleton" data-outline></div>
 
-		<button class="site-header__menu-button" aria-expanded="false" aria-controls="site-header-nav" aria-label="メニュー">
+		<button
+			class="site-header__menu-button"
+			aria-expanded="false"
+			aria-controls="site-header-nav"
+			aria-label="メニュー"
+		>
 			<span></span>
 		</button>
 
 		<div class="site-header__nav" id="site-header-nav">
 			<nav class="header-nav">
 				<ul class="header-nav__list">
-					<li class="header-nav__list-item -link"><a href="/" class="header-nav__link">HOME</a></li>
-					<li class="header-nav__list-item -link"><a href="/blog/" class="header-nav__link">BLOG</a></li>
-					<li class="header-nav__list-item -link"><a href="/search/" class="header-nav__link">SEARCH</a></li>
-					<li class="header-nav__list-item">
-						<a href="https://github.com/kisjam/" target="_blank" rel="noopener" class="header-nav__link-icon">
+					<li class="header-nav__list-item -link" data-outline>
+						<a href="/" class="header-nav__link">HOME</a>
+					</li>
+					<li class="header-nav__list-item -link" data-outline>
+						<a href="/blog/" class="header-nav__link">BLOG</a>
+					</li>
+					<li class="header-nav__list-item -link" data-outline>
+						<a href="/search/" class="header-nav__link">SEARCH</a>
+					</li>
+					<li class="header-nav__list-item" data-outline>
+						<a
+							href="https://github.com/kisjam/"
+							target="_blank"
+							rel="noopener"
+							class="header-nav__link-icon"
+						>
 							<svg class="icon -github" aria-label="kisjam" width="32" height="32">
 								<use xlink:href="#icon-github" width="32" height="32"></use>
 							</svg>
 						</a>
 					</li>
-					<li class="header-nav__list-item">
-						<a href="https://twitter.com/kisjam_" target="_blank" rel="noopener" class="header-nav__link-icon">
+					<li class="header-nav__list-item" data-outline>
+						<a
+							href="https://twitter.com/kisjam_"
+							target="_blank"
+							rel="noopener"
+							class="header-nav__link-icon"
+						>
 							<svg class="icon -x" aria-label="@kisjam_" width="24" height="24">
 								<use xlink:href="#icon-x" width="24" height="24"></use>
 							</svg>
@@ -36,6 +58,5 @@ const Logo = Astro.url.pathname === '/' ? 'h1' : 'p'
 				</ul>
 			</nav>
 		</div>
-
 	</div>
 </header>

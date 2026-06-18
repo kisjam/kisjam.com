@@ -6,7 +6,7 @@ const { title, date, categories, tags, emoji } = post.data;
 const modified = post.data.modified ?? date;
 const uri = postUri(post);
 ---
-<article class="block-article">
+<article class="block-article" data-outline>
 	<a href={ uri } class="block-article__link">
 		<div class="block-article__header">
 			<p class="block-article__icon">{ emoji }</p>

@@ -1,25 +1,42 @@
 ---
-import BlogLayout from "../../layouts/BlogLayout.astro";
-import { getSortedPosts } from "../../utils/posts";
-import BlockArticle from "../../components/BlockArticle.astro";
+import BlogLayout from '../../layouts/BlogLayout.astro';
+import { getSortedPosts } from '../../utils/posts';
+import BlockArticle from '../../components/BlockArticle.astro';
 
 export async function getStaticPaths({ paginate }) {
 	const allPosts = await getSortedPosts();
 	return paginate(allPosts, {
-      pageSize: 10
-    });
+		pageSize: 10,
+	});
 }
 const { page } = Astro.props;
 ---
+
 <BlogLayout title="BLOG | kisjam.com">
 	<section class="container-block">
-		<h2 class="title-block-h1"><span class="title-block-h1__inner">BLOG</span></h2>
+		<h2 class="title-block-h1" data-outline><span class="title-block-h1__inner">BLOG</span></h2>
 
-		{ page.data.map( post => <BlockArticle post={post} /> ) }
+		{page.data.map((post) => <BlockArticle post={post} />)}
 
 		<div class="block-pagination">
-			{page.url.prev ? <p class="block-pagination__prev"><a href={page.url.prev} class="block-pagination__link">Prev</a></p> : null}
-			{page.url.next ? <p class="block-pagination__next"><a href={page.url.next} class="block-pagination__link">Next</a></p> : null}
+			{
+				page.url.prev ? (
+					<p class="block-pagination__prev" data-outline>
+						<a href={page.url.prev} class="block-pagination__link">
+							Prev
+						</a>
+					</p>
+				) : null
+			}
+			{
+				page.url.next ? (
+					<p class="block-pagination__next" data-outline>
+						<a href={page.url.next} class="block-pagination__link">
+							Next
+						</a>
+					</p>
+				) : null
+			}
 		</div>
 	</section>
 </BlogLayout>
