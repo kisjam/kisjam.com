@@ -42,23 +42,5 @@
 			padding-left: 0;
 			width: 100%;
 		}
-
-		&-icon {
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			background-color: $color-gray;
-
-			// ホバー: 反転表示（青地に白文字）
-			@include hover {
-				background-color: $color-accent;
-				color: $color-white;
-			}
-
-			color: $color-accent;
-			border-radius: $radius;
-			width: var(--height-block);
-			height: var(--height-block);
-		}
 	}
 }

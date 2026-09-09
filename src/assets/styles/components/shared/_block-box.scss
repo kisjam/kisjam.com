@@ -5,6 +5,14 @@
 	border-radius: $radius;
 	color: $color-accent;
 
+	a {
+		text-underline-offset: 0.2em;
+
+		@include hover {
+			text-decoration: none;
+		}
+	}
+
 	&__inner {
 		padding: 32px;
 
