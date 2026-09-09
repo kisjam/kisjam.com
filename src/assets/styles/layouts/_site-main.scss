@@ -14,14 +14,13 @@
 		grid-template-columns: 1fr;
 	}
 
-	&::before,
-	&::after {
-		content: "";
+	// 左右の装飾パネル（擬似要素だと輪郭FXの矩形が取れないため実要素）
+	&__side {
 		background-color: $color-gray;
 		border-radius: $radius;
 
 		@include mq(md) {
-			content: none;
+			display: none;
 		}
 	}
 	&__inner {

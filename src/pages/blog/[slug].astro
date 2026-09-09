@@ -39,8 +39,8 @@ const jsonLd = {
 	<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 	<div class="container-block">
 	<article class="block-single" data-pagefind-body>
-		<figure class="block-single__emoji">{ emoji }</figure>
-		<div class="block-single__body">
+		<figure class="block-single__emoji" data-outline>{ emoji }</figure>
+		<div class="block-single__body" data-outline>
 			<div class="block-single__title">
 				<h1 class="title-h1">{ title }</h1>
 			</div>
@@ -83,11 +83,11 @@ const jsonLd = {
 		</div>
 	</article>
 	<div class="block-pagination">
-		{older ? <p class="block-pagination__prev"><a href={postUri(older)} class="block-pagination__link">← { older.data.title }</a></p> : null}
-		{newer ? <p class="block-pagination__next"><a href={postUri(newer)} class="block-pagination__link">{ newer.data.title } →</a></p> : null}
+		{older ? <p class="block-pagination__prev" data-outline><a href={postUri(older)} class="block-pagination__link">← { older.data.title }</a></p> : null}
+		{newer ? <p class="block-pagination__next" data-outline><a href={postUri(newer)} class="block-pagination__link">{ newer.data.title } →</a></p> : null}
 	</div>
 	<div class="block-pagination">
-		<p class="block-pagination__next"><a href="/blog/" class="block-pagination__link">ブログ記事一覧に戻る</a></p>
+		<p class="block-pagination__next" data-outline><a href="/blog/" class="block-pagination__link">ブログ記事一覧に戻る</a></p>
 	</div>
 	</div>
 </BlogLayout>

@@ -22,9 +22,11 @@ const { title, description } = Astro.props
 		<div class="site-container">
 			<Header />
 			<main class="site-main">
+				<div class="site-main__side" data-outline aria-hidden="true"></div>
 				<div class="site-main__inner">
 					<slot />
 				</div>
+				<div class="site-main__side" data-outline aria-hidden="true"></div>
 			</main>
 			<Footer />
 		</div>
