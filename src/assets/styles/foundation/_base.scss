@@ -2,6 +2,8 @@
 
 html {
 	background-color: $color-black;
+	// スクロール端のバウンス（オーバースクロール）を無効化
+	overscroll-behavior: none;
 	// scroll-padding-top: calc(var(--header-height) + 32px);
 }
 
