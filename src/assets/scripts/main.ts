@@ -9,7 +9,7 @@ button?.addEventListener('click', () => {
 });
 
 new OutlineLayer({
-	lineWidth: 2,
+	lineWidth: 1,
 	autoGlitch: false,
 	scrollGlitch: true,
 	scrollGain: 0.008,

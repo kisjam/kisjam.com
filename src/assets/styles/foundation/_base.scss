@@ -25,12 +25,10 @@ svg {
 	height: auto;
 }
 
-a:link {
+// :where() で特異性を 0 にし、コンポーネント側のクラス指定が素直に勝てるようにする
+a:where(:link, :visited) {
 	color: $color-black;
 }
-a:visited {
-	color: $color-black;
-}
-a:hover {
+a:where(:hover) {
 	color: $color-accent;
 }

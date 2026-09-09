@@ -3,7 +3,7 @@
 .title-block-h1 {
 	background-color: $color-gray;
 	border-radius: $radius;
-	color: $color-black;
+	color: $color-accent;
 
 	&__inner {
 		display: block;
@@ -19,6 +19,7 @@
 		position: relative;
 		display: block;
 		padding: 24px 32px;
+		color: $color-accent;
 		text-decoration: none;
 
 		&::before {
