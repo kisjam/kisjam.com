@@ -1,0 +1,42 @@
+@use "@assets/styles/global" as *;
+
+// Pagefind UI をサイトの配色に合わせる
+.block-search {
+	background-color: $color-gray;
+	color: $color-accent;
+	padding: 32px;
+
+	@include mq(md) {
+		padding: 24px;
+	}
+
+	--pagefind-ui-scale: 1;
+	--pagefind-ui-primary: #{$color-accent};
+	--pagefind-ui-text: #{$color-accent};
+	--pagefind-ui-background: #{$color-white};
+	--pagefind-ui-border: #{$color-accent};
+	--pagefind-ui-tag: #{$color-white};
+	--pagefind-ui-border-width: 1px;
+	--pagefind-ui-border-radius: #{$radius};
+	--pagefind-ui-image-border-radius: #{$radius};
+	--pagefind-ui-font: inherit;
+
+	.pagefind-ui__search-input {
+		font-weight: inherit;
+	}
+	.pagefind-ui__search-input::placeholder {
+		color: rgba($color-accent, 0.5);
+	}
+	// ハイライトはアクセント色の薄塗り（.pagefind-ui--reset mark {all:revert} より特異性を上げる）
+	.pagefind-ui mark {
+		background-color: rgba($color-accent, 0.15);
+		color: inherit;
+	}
+	.pagefind-ui__result-link {
+		text-underline-offset: 0.2em;
+
+		@include hover {
+			text-decoration: none;
+		}
+	}
+}

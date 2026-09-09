@@ -27,5 +27,7 @@
 		display: grid;
 		gap: $gap;
 		min-width: 0;
+		align-content: start;
+		background-color: $color-gray;
 	}
 }

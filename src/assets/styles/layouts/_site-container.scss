@@ -1,7 +1,8 @@
 @use "@assets/styles/global" as *;
 
 .site-container {
-	// background-color: $color-black;
-	// padding: calc(var(--header-height) + $gap) $gap $gap;
-	// padding: $gap;
+	// 短いページでも footer の下に html 背景が露出しないよう、main で余白を吸収する
+	min-height: 100dvh;
+	display: grid;
+	grid-template-rows: auto 1fr auto;
 }
