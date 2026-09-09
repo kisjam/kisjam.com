@@ -20,8 +20,8 @@ new OutlineLayer({
 	amp: 6,
 	sliceShift: 60,
 	colors: {
-		line: 'rgba(1,46,64,0.7)',
-		body: 'rgba(1,46,64,0.7)',
+		line: 'rgba(20,102,255,0.85)',
+		body: 'rgba(20,102,255,0.85)',
 		r: 'rgba(255,0,153,0.9)',
 		b: 'rgba(0,229,255,0.9)',
 	},

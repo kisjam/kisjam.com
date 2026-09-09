@@ -61,6 +61,13 @@
 			@include title-h4.title-h4;
 		}
 
+		// ---- リンク ----
+		a {
+			color: $color-accent;
+			text-decoration: underline;
+			text-underline-offset: 0.2em;
+		}
+
 		// ---- 本文・リスト ----
 		p {
 			@include text.text;
