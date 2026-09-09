@@ -7,7 +7,7 @@
 
 		@include mq(md) {
 			padding: 0 4px 4px;
-			background-color: $color-black;
+			background-color: $color-accent;
 		}
 
 		&-item {
@@ -21,6 +21,12 @@
 	&__link {
 		display: flex;
 		background-color: $color-gray;
+		// ホバー: 反転表示（青地に白文字）
+		@include hover {
+			background-color: $color-accent;
+			color: $color-white;
+		}
+
 		border-radius: $radius;
 		font-size: rem(16);
 		color: $color-accent;
@@ -42,6 +48,13 @@
 			justify-content: center;
 			align-items: center;
 			background-color: $color-gray;
+
+			// ホバー: 反転表示（青地に白文字）
+			@include hover {
+				background-color: $color-accent;
+				color: $color-white;
+			}
+
 			color: $color-accent;
 			border-radius: $radius;
 			width: var(--height-block);

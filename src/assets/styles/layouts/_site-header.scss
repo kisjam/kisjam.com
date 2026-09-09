@@ -44,6 +44,17 @@
 			margin: 0;
 			cursor: pointer;
 
+			// ホバー: 反転表示（青地に白い線）
+			@include hover {
+				background-color: $color-accent;
+
+				&::before,
+				&::after,
+				span {
+					background-color: $color-white;
+				}
+			}
+
 			&::before,
 			&::after,
 			span {
@@ -52,7 +63,7 @@
 				left: 50%;
 				width: 24px;
 				height: 2px;
-				background-color: $color-black;
+				background-color: $color-accent;
 			}
 
 			&::before {

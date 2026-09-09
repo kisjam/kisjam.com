@@ -4,6 +4,12 @@
 	&__link {
 		display: flex;
 		background-color: $color-gray;
+		// ホバー: 反転表示（青地に白文字）
+		@include hover {
+			background-color: $color-accent;
+			color: $color-white;
+		}
+
 		border-radius: $radius;
 		font-size: rem(18);
 		color: $color-accent;

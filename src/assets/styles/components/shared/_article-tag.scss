@@ -10,5 +10,17 @@
 		border: 1px solid rgba($color-black, 0.2);
 		border-radius: $radius;
 		font-size: rem(14);
+
+		a {
+			display: block;
+			margin: -2px -8px;
+			padding: 2px 8px;
+			text-decoration: none;
+
+			@include hover {
+				background-color: $color-accent;
+				color: $color-white;
+			}
+		}
 	}
 }

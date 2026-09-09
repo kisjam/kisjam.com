@@ -25,6 +25,16 @@
 	&__link {
 		position: relative;
 		background-color: $color-gray;
+		// ホバー: 反転表示（青地に白文字、ドットも白）
+		@include hover {
+			background-color: $color-accent;
+			color: $color-white;
+
+			&::after {
+				background-color: $color-white;
+			}
+		}
+
 		border-radius: $radius;
 		color: $color-accent;
 		display: flex;

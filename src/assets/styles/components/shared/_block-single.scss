@@ -66,6 +66,10 @@
 			color: $color-accent;
 			text-decoration: underline;
 			text-underline-offset: 0.2em;
+
+			@include hover {
+				text-decoration: none;
+			}
 		}
 
 		// ---- 本文・リスト ----

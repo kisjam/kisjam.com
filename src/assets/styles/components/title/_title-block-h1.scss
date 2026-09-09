@@ -18,6 +18,16 @@
 	&__link {
 		position: relative;
 		display: block;
+		// ホバー: 反転表示（青地に白文字、ドットも白）
+		@include hover {
+			background-color: $color-accent;
+			color: $color-white;
+
+			&::after {
+				background-color: $color-white;
+			}
+		}
+
 		padding: 24px 32px;
 		color: $color-accent;
 		text-decoration: none;
