@@ -8,8 +8,11 @@
 		background-color: $color-gray;
 		color: $color-accent;
 		border-radius: $radius;
-		padding: 16px 32px;
+		// ヘッダーと同じ高さに揃える
+		min-height: var(--height-block);
+		padding: 0 32px;
 		display: flex;
+		align-items: center;
 		justify-content: flex-end;
 		gap: 24px;
 	}
