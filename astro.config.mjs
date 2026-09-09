@@ -7,6 +7,12 @@ const assetsUrl = new URL('./src/assets/', import.meta.url)
 export default defineConfig({
   site: 'https://kisjam.com',
   integrations: [sitemap()],
+  markdown: {
+    // コードブロックは明色テーマにし、背景色は CSS 側でインライン code と揃える
+    shikiConfig: {
+      theme: 'github-light',
+    },
+  },
   image: {
     layout: 'constrained',
   },

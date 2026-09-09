@@ -122,6 +122,9 @@
 			line-height: 1.75;
 			overflow-x: auto;
 			border-radius: $radius;
+			// Shiki のインラインスタイル(背景/文字色)を上書きしてインライン code と同じ見た目に
+			background-color: rgba($color-accent, 0.1) !important;
+			color: $color-accent !important;
 
 			@include mq(md) {
 				padding: 16px;
