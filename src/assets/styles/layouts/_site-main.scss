@@ -26,5 +26,6 @@
 	&__inner {
 		display: grid;
 		gap: $gap;
+		min-width: 0;
 	}
 }

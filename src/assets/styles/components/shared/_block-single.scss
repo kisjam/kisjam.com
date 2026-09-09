@@ -8,6 +8,8 @@
 .block-single {
 	display: grid;
 	gap: $gap;
+	// グリッドアイテムの min-width:auto による列の押し広げを防ぐ（長い行の pre / URL 対策）
+	min-width: 0;
 
 	&__emoji {
 		background-color: $color-gray;
@@ -24,6 +26,11 @@
 		border-radius: $radius;
 		color: $color-black;
 		padding: 32px;
+		min-width: 0;
+
+		@include mq(md) {
+			padding: 24px 20px;
+		}
 	}
 	&__category {
 		margin-top: 8px;
@@ -36,52 +43,125 @@
 		border-top: 1px solid rgba($color-black, 0.1);
 		padding-top: 40px;
 
+		@include mq(md) {
+			margin-top: 32px;
+			padding-top: 32px;
+		}
+
+		// ---- 見出し ----
 		h2 {
 			@include title-h2.title-h2;
 		}
 		h3 {
 			@include title-h3.title-h3;
 		}
-		h4 {
+		h4,
+		h5,
+		h6 {
 			@include title-h4.title-h4;
 		}
+
+		// ---- 本文・リスト ----
 		p {
 			@include text.text;
 		}
 		ul {
 			@include list-disc.list-disc;
 		}
+		ol {
+			@include list-disc.list-disc;
+			list-style-type: decimal;
+		}
+		li > ul,
+		li > ol {
+			margin-top: 8px;
+			margin-bottom: 0;
+		}
+
+		// ---- 引用 ----
+		blockquote {
+			&:not(:first-child) {
+				margin-top: 24px;
+			}
+			padding: 16px 24px;
+			border-left: 3px solid rgba($color-black, 0.25);
+			background-color: rgba($color-black, 0.04);
+			line-height: 1.75;
+
+			p:not(:first-child) {
+				margin-top: 16px;
+			}
+		}
+
+		// ---- コード ----
 		code {
+			font-size: 0.9em;
 			white-space: pre-wrap;
 			background-color: rgba($color-black, 0.1);
 			padding: 2px 8px;
 			border-radius: $radius;
 		}
-		.wp-block-code {
+		// Markdown の ```  ``` は <pre class="astro-code"><code> で出力される
+		pre {
 			&:not(:first-child) {
 				margin-top: 24px;
 			}
-
+			padding: 20px 24px;
+			font-size: rem(14);
 			line-height: 1.75;
-			// background-color: $color-white;
-			background-color: rgba($color-black, 0.1);
-			border-radius: $radius;
-			padding: 16px;
 			overflow-x: auto;
+			border-radius: $radius;
+
+			@include mq(md) {
+				padding: 16px;
+			}
 
 			code {
+				display: block;
+				font-size: inherit;
+				// 従来どおり長い行は折り返す。空白の無い長文字列は横スクロールに逃がす
+				white-space: pre-wrap;
+				overflow-wrap: anywhere;
 				background: none;
 				padding: 0;
 			}
 		}
-	}
-	.wp-block-image {
-		&:not(:first-child) {
-			margin-top: 24px;
+
+		// ---- 画像 ----
+		img {
+			display: block;
+			max-width: 100%;
+			height: auto;
+			border-radius: $radius;
 		}
 
-		img {
-			border-radius: $radius;
+		// ---- 表 ----
+		table {
+			&:not(:first-child) {
+				margin-top: 24px;
+			}
+			display: block;
+			overflow-x: auto;
+			border-collapse: collapse;
+			line-height: 1.75;
+
+			th,
+			td {
+				padding: 8px 12px;
+				border: 1px solid rgba($color-black, 0.15);
+				text-align: left;
+				vertical-align: top;
+			}
+			th {
+				background-color: rgba($color-black, 0.06);
+			}
+		}
+
+		// ---- 区切り ----
+		hr {
+			margin: 40px 0;
+			border: 0;
+			border-top: 1px solid rgba($color-black, 0.1);
 		}
 	}
 }
