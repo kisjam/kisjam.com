@@ -2,7 +2,7 @@
 
 .article-date {
 	display: flex;
-	color: rgba($color-black, 0.7);
+	color: rgba($color-accent, 0.7);
 	font-size: rem(14);
 
 	@include mq(md) {

@@ -9,7 +9,7 @@ html {
 
 body {
 	font-family: $ff-noto-sans;
-	color: $color-black;
+	color: $color-accent;
 	font-size: rem(16);
 	font-weight: $fw-medium;
 	letter-spacing: 0.04em;
@@ -27,8 +27,8 @@ svg {
 
 // :where() で特異性を 0 にし、コンポーネント側のクラス指定が素直に勝てるようにする
 a:where(:link, :visited) {
-	color: $color-black;
+	color: $color-accent;
 }
 a:where(:hover) {
-	color: $color-accent;
+	color: $color-black;
 }
