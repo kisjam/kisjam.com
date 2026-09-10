@@ -29,3 +29,24 @@ svg {
 a:where(:link, :visited) {
 	color: $color-accent;
 }
+
+// キーボード操作時のフォーカス。マウスクリックでは出さない
+:focus-visible {
+	outline: 2px solid $color-accent;
+	outline-offset: 2px;
+}
+:focus:not(:focus-visible) {
+	outline: none;
+}
+// 隙間なく並ぶ箱ごとのリンクとボタンは、隣に被らないよう内側に描く
+.header-logo__link,
+.header-nav__link,
+.site-header__menu-button,
+.title-block-h1__link,
+.title-block-h2__link,
+.block-article__link,
+.block-pagination__link {
+	&:focus-visible {
+		outline-offset: -3px;
+	}
+}
