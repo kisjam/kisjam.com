@@ -3,7 +3,7 @@ title: "LINEスタンプページへのアクセスを測定する"
 slug: "analyze-access-to-line-stickers"
 date: "2017-05-24T19:54:16+09:00"
 modified: "2024-02-02T01:35:15+09:00"
-emoji: "📈"
+emoji: "🔍"
 excerpt: "LINEスタンプはどれだけ売れたかはわかるのですが - 自分のページのアクセス数 - 流入元（Twitter/ Facebook/ Instagram/ etc…） はわかりません。 各SNS毎にインサイト（アクセス解析）が付いていますが投…"
 categories:
   - name: "LINEスタンプ"

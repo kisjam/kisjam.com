@@ -3,7 +3,7 @@ title: "MacBook がクソ重い時の対処方法"
 slug: "macbook-pro-fan-clean"
 date: "2025-03-19T17:11:28+09:00"
 modified: "2025-03-19T17:11:29+09:00"
-emoji: "🌬️"
+emoji: "🧹"
 excerpt: "MacBook Proが重すぎる。 最初はAdobe系を立ち上げている時に重たいな〜と思っていたのですが、気がついたら普段通りブラウジングするだけでももっさりし始め、これはいかんとPC内を整理することにしました。 症状としては全体的に動作が…"
 categories:
   - name: "備忘録"

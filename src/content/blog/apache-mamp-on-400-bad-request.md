@@ -3,7 +3,7 @@ title: "Apache（MAMP）で400 Bad requestが表示される場合"
 slug: "apache-mamp-on-400-bad-request"
 date: "2017-10-01T21:45:42+09:00"
 modified: "2024-02-02T01:26:10+09:00"
-emoji: "🖥"
+emoji: "🪶"
 excerpt: "表題の通り。いつも通りローカルに開発環境を整えようとhtdocsにファイルを追加し、Virtual Hostの設定を加えてMAMP上でApacheを再起動してアクセス。が、何故か400エラー。心当たり全くなしのところどうやらServerNa…"
 categories:
   - name: "Develop"

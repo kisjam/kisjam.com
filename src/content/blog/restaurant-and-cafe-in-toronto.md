@@ -3,7 +3,7 @@ title: "レストラン・カフェまとめ in トロント"
 slug: "restaurant-and-cafe-in-toronto"
 date: "2024-01-14T05:30:21+09:00"
 modified: "2024-02-02T01:08:37+09:00"
-emoji: "🍴"
+emoji: "🍽️"
 excerpt: "トロントで食べた美味しいレストランやカフェまとめ。 ブランチ Evviva Breakfast and Lunch 朝から空いてる。予約が出来るので予定が決まっているときは便利 Pasaj 美味しい。徒歩圏内なのでたまにいく。 Her Fa…"
 categories:
   - name: "雑記"

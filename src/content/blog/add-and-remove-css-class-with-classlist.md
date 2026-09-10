@@ -3,7 +3,7 @@ title: "classListを使ってクラスの追加と削除をする"
 slug: "add-and-remove-css-class-with-classlist"
 date: "2017-07-22T16:14:20+09:00"
 modified: "2024-02-02T01:27:42+09:00"
-emoji: "🐥"
+emoji: "🏷️"
 excerpt: "JavaScriptでクラスの追加削除をする時、今まではjQueryならaddClass()、生で書く時はclassName()で追加と削除をしていましたが便利なclassListというのがあるみたいです、IE10以上なら大体動きます。 追…"
 categories:
   - name: "Develop"

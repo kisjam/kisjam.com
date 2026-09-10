@@ -3,7 +3,7 @@ title: "Vagrantでローカル環境を作る。導入編"
 slug: "setup-vagrant"
 date: "2017-06-27T21:23:05+09:00"
 modified: "2024-02-02T01:31:25+09:00"
-emoji: "🌳"
+emoji: "📦"
 excerpt: "ローカル開発環境を見直すにあたりVagrantを採用したいなと。 今回の目標はwebサーバー立ち上げて表示まで。 とりあえず概要を掴むためにざっとドットインストールに目を通す。 http://dotinstall.com/lessons/b…"
 categories:
   - name: "Develop"

@@ -3,7 +3,7 @@ title: "Evernoteからメモに移行する"
 slug: "transfer-from-evernote-to-memo"
 date: "2017-11-29T16:00:47+09:00"
 modified: "2024-02-02T01:19:51+09:00"
-emoji: "📝"
+emoji: "🐘"
 excerpt: "メモアプリはずっとEvernoteを使っていました。最近ちょっと使いづらい点が目立ってきたのでいい移行先はないかなーと探していたところ、Mac標準のメモアプリがなんか良さげだったので乗り換えることにしました。 Evernoteのここが微妙…"
 categories:
   - name: "備忘録"

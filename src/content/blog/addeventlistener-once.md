@@ -3,7 +3,7 @@ title: "addEventListenerで登録したイベントを1回だけ発火させて�
 slug: "addeventlistener-once"
 date: "2018-02-02T12:14:27+09:00"
 modified: "2024-02-02T01:15:35+09:00"
-emoji: "🐥"
+emoji: "🎯"
 excerpt: "上記の言い方であってるかわかりませんが一回だけイベント動いて欲しい時ありますよね、スクロールで任意の位置になったときに要素動かしたりとかボタンクリックしたら一回だけ発動したいとか。 jQueryだと.oneが便利でしたがjavascript…"
 categories:
   - name: "Develop"

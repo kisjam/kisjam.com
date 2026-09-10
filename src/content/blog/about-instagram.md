@@ -3,7 +3,7 @@ title: "Instagramについて考察"
 slug: "about-instagram"
 date: "2017-05-14T23:11:58+09:00"
 modified: "2024-02-02T01:24:52+09:00"
-emoji: "📹"
+emoji: "📷"
 excerpt: "LINEスタンプの広報用にずっとTwitterを使っていましたが新たにinstagramも使ってみようかなと試験運用してみて感じた所感をつらつらまとめます。 ユーザーが能動的に感じました、ハッシュタグからの流入が多い、何もつけないテキストの…"
 categories:
   - name: "LINEスタンプ"

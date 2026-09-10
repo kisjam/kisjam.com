@@ -3,7 +3,7 @@ title: "Twitterの予約投稿を利用する"
 slug: "twitter-reservation-post"
 date: "2017-05-03T11:51:58+09:00"
 modified: "2024-02-02T00:57:46+09:00"
-emoji: "🐦"
+emoji: "📮"
 excerpt: "Twitterで予約投稿を行うにはいくつか方法があります。 今回は公式の機能を利用して予約投稿を行う方法をまとめます。 「Twitter広告」の機能を利用します、ビジネス向けの機能ですが個人でも利用できますし無料で使えます。他にもツイートの…"
 categories:
   - name: "LINEスタンプ"

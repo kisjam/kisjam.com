@@ -3,7 +3,7 @@ title: "vccwでWordPressの開発環境を作る。"
 slug: "developed-wordpress-theme-with-vccw"
 date: "2017-07-28T05:00:28+09:00"
 modified: "2024-02-02T01:27:25+09:00"
-emoji: "🛠"
+emoji: "📦"
 excerpt: "まえおき WordPressのテーマでも作ろうと思ったある日、先日うきうきでローカル開発環境を整えた俺はWordPressをインストールしようと試みました。 さて、気づいたらXAMPPでMysql+WPインスコなんてのは過去の産物になってい…"
 categories:
   - name: "Develop"

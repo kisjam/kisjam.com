@@ -3,7 +3,7 @@ title: "CSSでテキストの上下余白を消す。 leading-trim / text-edge �
 slug: "leading-trim-text-edge"
 date: "2024-04-08T13:24:54+09:00"
 modified: "2024-11-05T15:01:12+09:00"
-emoji: "🫥"
+emoji: "📏"
 excerpt: "最近Figmaでデザインをもらうと、ちらほら Vertical-trim をしている（正しい表現か不明）デザインに当たることがある。テキストのline-heightに応じて上下余白が増えたりするアレである。 今に始まったことではないのですが…"
 categories:
   - name: "備忘録"

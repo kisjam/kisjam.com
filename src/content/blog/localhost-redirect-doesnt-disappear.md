@@ -3,7 +3,7 @@ title: "ローカルホストのリダイレクトが消えない"
 slug: "localhost-redirect-doesnt-disappear"
 date: "2023-11-16T07:05:25+09:00"
 modified: "2024-02-02T01:08:23+09:00"
-emoji: "🐥"
+emoji: "🧹"
 excerpt: "なにかの拍子にlocalhost:3000がlocalhostにリダイレクトするようになってしまいました。 なかなか解消に手間取ったので備忘録として残しておきます。 現象 localhost:3000にアクセスするとlocalhostにリダ…"
 categories:
   - name: "備忘録"

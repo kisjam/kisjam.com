@@ -3,7 +3,7 @@ title: "Vue.jsとAxiosでWP REST APIを使ってみた。"
 slug: "i-tried-using-rest-api-with-vue-js-and-axios"
 date: "2017-07-19T08:22:33+09:00"
 modified: "2024-02-02T01:28:19+09:00"
-emoji: "🐥"
+emoji: "🔌"
 excerpt: "「REST API」はWordPressの投稿データ等をHTTPリクエストで取得できる便利な仕組みです、既存の記事を更新したり取得したりと色々できます。今回はシンプルにサイトにWordPressの新着記事を任意の数だけ表示させるのが目的です…"
 categories:
   - name: "Develop"

@@ -3,7 +3,7 @@ title: "LINEスタンプ用Twitterアカウントを1ヶ月運用してみた所
 slug: "the-feeling-that-i-tried-the-twitter-account-for-line-stickers-for-one-month"
 date: "2017-05-17T15:56:27+09:00"
 modified: "2024-02-02T01:34:42+09:00"
-emoji: "🐦"
+emoji: "📊"
 excerpt: "LINEスタンプの広報にTwitterアカウント使えるんじゃね？と思ってざっくり一ヶ月運用してみた結果をまとめます。 思ったほど簡単にバズとか起きないし完全に伸び悩んでる のが現状 簡単に説明すると1日1ツイートくらいを目安に画像つきでツイ…"
 categories:
   - name: "LINEスタンプ"

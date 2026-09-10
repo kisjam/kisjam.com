@@ -3,7 +3,7 @@ title: "BetterTouchToolが有料化したのでBTT remoteでアクティベー�
 slug: "activate-bettertouchtool-with-btt-remote"
 date: "2016-03-15T13:28:17+09:00"
 modified: "2024-02-02T00:49:15+09:00"
-emoji: "👋"
+emoji: "🖱️"
 excerpt: "BetterTouchTool（以下BTT）をずっと使用していたんだけれども最近有料化してました。 というのも最初は気付かずにやたらポップアップが出るなーと思っていたらTrial期間がいつの間にか過ぎてある日マウスジェスチャが反応しなくなり…"
 categories:
   - name: "雑記"

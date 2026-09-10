@@ -3,7 +3,7 @@ title: "IEでオフィスファイル（.doc, .xls）をダウンロードする
 slug: "whiteout-officefile"
 date: "2015-11-17T09:43:13+09:00"
 modified: "2024-02-02T00:46:21+09:00"
-emoji: "🖥"
+emoji: "📥"
 excerpt: "- IEでPDFやオフィスファイルのリンクを開く際に画面が白くなってしまう - 通知バーではなくダイアログボックスを表示させたい .htaccess内に下記コードを記述する。"
 categories:
   - name: "Develop"
