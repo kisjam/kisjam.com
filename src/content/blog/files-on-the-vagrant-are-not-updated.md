@@ -3,7 +3,7 @@ title: "Vagrant上のApacheでファイルの更新が反映されない時に�
 slug: "files-on-the-vagrant-are-not-updated"
 date: "2017-06-30T17:58:18+09:00"
 modified: "2024-02-02T01:29:53+09:00"
-emoji: "🐥"
+emoji: "📦"
 excerpt: "ファイルを置いた時なんかは気づきませんでしたが中身を更新しても画面上に反映されず、ブラウザでソースを確認すると前のまま。 Vagrantやローカルの該当ファイルを確認してみるとこちらは更新されているけれど反映はされない。どうやらVagran…"
 categories:
   - name: "Develop"
