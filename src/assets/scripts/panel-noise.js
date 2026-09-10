@@ -7,7 +7,7 @@
  *   (ドメインワープ) ことで流れる液体のような模様を作る
  * - デジタル: 濃度を数段階に量子化し、粗いセル単位で描く。ときどき矩形ブロックが点灯する
  * - グラデーション: 画面中央に近い辺ほど濃く、縦方向にも濃淡を掛ける
- * - canvas はパネル内で sticky にし、常に可視範囲(1 画面ぶん)だけ計算する
+ * - canvas はパネル全体を覆い、毎フレームの再計算は画面内の行(＋余白)だけに絞る
  * - IntersectionObserver で可視のパネルだけ描画し、タブ非表示や
  *   prefers-reduced-motion では停止する
  *
@@ -100,10 +100,11 @@ class Panel {
     this.opt = opt;
     this.canvas = document.createElement('canvas');
     Object.assign(this.canvas.style, {
-      position: 'sticky',
-      top: '0',
+      position: 'absolute',
+      inset: '0',
       display: 'block',
       width: '100%',
+      height: '100%',
       pointerEvents: 'none',
       imageRendering: 'pixelated',
     });
@@ -124,12 +125,11 @@ class Panel {
   resize() {
     const { cell } = this.opt;
     const r = this.el.getBoundingClientRect();
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    // セル描画なので dpr は 1 で十分 (縦長パネルのメモリを抑える)
     const w = r.width;
-    const h = Math.min(r.height, window.innerHeight);
-    this.canvas.style.height = h + 'px';
-    this.canvas.width = Math.max(1, Math.round(w * dpr));
-    this.canvas.height = Math.max(1, Math.round(h * dpr));
+    const h = r.height;
+    this.canvas.width = Math.max(1, Math.round(w));
+    this.canvas.height = Math.max(1, Math.round(h));
     if (this.opt.edgeGradient === 'auto') {
       this.edge = r.left + w / 2 < window.innerWidth / 2 ? 'right' : 'left';
     } else {
@@ -144,6 +144,7 @@ class Panel {
       this.buf.height = rows;
       this.img = this.bctx.createImageData(cols, rows);
       this.blocks = [];
+      this.dirtyAll = true; // 次の draw で全行を描く
     }
     const { edgeMin } = this.opt;
     this.colGain = new Float32Array(cols);
@@ -161,9 +162,13 @@ class Panel {
     if (Math.random() < o.blockRate) {
       const w = 2 + Math.floor(Math.random() * 12);
       const h = 1 + Math.floor(Math.random() * 3);
+      const rect = this.el.getBoundingClientRect();
+      const vy0 = Math.max(0, Math.floor(-rect.top / o.cell));
+      const vy1 = Math.min(this.rows, Math.ceil((window.innerHeight - rect.top) / o.cell));
+      if (vy1 - vy0 <= h) return;
       this.blocks.push({
         x: Math.floor(Math.random() * Math.max(1, this.cols - w)),
-        y: Math.floor(Math.random() * Math.max(1, this.rows - h)),
+        y: vy0 + Math.floor(Math.random() * (vy1 - vy0 - h)),
         w,
         h,
         life: o.blockLife[0] + Math.floor(Math.random() * (o.blockLife[1] - o.blockLife[0])),
@@ -188,9 +193,22 @@ class Panel {
     const sx = o.scale * o.cell * TILE * 0.08;
     const warp = o.warp * TILE * 0.25;
     const levels = o.levels;
-    for (let y = 0; y < rows; y++) {
+    // 更新する行の範囲: 画面内 ± 余白 (初回とリサイズ時は全行)
+    let y0 = 0;
+    let y1 = rows;
+    if (!this.dirtyAll) {
+      const margin = 40;
+      y0 = Math.max(0, Math.floor(-rect.top / o.cell) - margin);
+      y1 = Math.min(rows, Math.ceil((window.innerHeight - rect.top) / o.cell) + margin);
+      if (y1 <= y0) return;
+    }
+    this.dirtyAll = false;
+    // 縦グラデーションは画面内の位置で決める (パネル全体ではなく見えている範囲で上→下)
+    const vh = Math.max(1, window.innerHeight / o.cell);
+    for (let y = y0; y < y1; y++) {
       const py = (y + offY) * sx;
-      const rowGain = g0 + (g1 - g0) * (y / (rows - 1 || 1));
+      const vy = Math.min(1, Math.max(0, (y + rect.top / o.cell) / vh));
+      const rowGain = g0 + (g1 - g0) * vy;
       for (let x = 0; x < cols; x++) {
         const px = (x + offX) * sx;
         // 歪み場 (ゆっくり回るように動く)
@@ -208,7 +226,8 @@ class Panel {
       }
     }
     for (const bl of this.blocks) {
-      for (let y = bl.y; y < bl.y + bl.h && y < rows; y++) {
+      if (bl.y + bl.h <= y0 || bl.y >= y1) continue;
+      for (let y = Math.max(bl.y, y0); y < bl.y + bl.h && y < y1; y++) {
         for (let x = bl.x; x < bl.x + bl.w && x < cols; x++) {
           const p = (y * cols + x) * 4;
           d[p] = cr;
@@ -218,11 +237,14 @@ class Panel {
         }
       }
     }
-    this.bctx.putImageData(img, 0, 0);
+    // 更新した行だけ転送して拡大描画する
+    const h = y1 - y0;
+    this.bctx.putImageData(img, 0, 0, 0, y0, cols, h);
     const ctx = this.ctx;
-    ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    const cell = o.cell;
     ctx.imageSmoothingEnabled = false;
-    ctx.drawImage(this.buf, 0, 0, this.canvas.width, this.canvas.height);
+    ctx.clearRect(0, y0 * cell, this.canvas.width, h * cell);
+    ctx.drawImage(this.buf, 0, y0, cols, h, 0, y0 * cell, cols * cell, h * cell);
   }
 }
 
