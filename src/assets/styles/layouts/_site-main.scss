@@ -16,6 +16,8 @@
 
 	// 左右の装飾パネル（擬似要素だと輪郭FXの矩形が取れないため実要素）
 	&__side {
+		position: relative; // ノイズ描画 canvas の基準
+		overflow: hidden;
 		background-color: $color-gray;
 		border-radius: $radius;
 

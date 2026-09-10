@@ -1,4 +1,5 @@
 import { OutlineLayer } from './outline-layer.js';
+import { PanelNoise } from './panel-noise.js';
 
 const button = document.querySelector<HTMLButtonElement>('.site-header__menu-button');
 const nav = document.querySelector<HTMLElement>('.site-header__nav');
@@ -25,4 +26,10 @@ new OutlineLayer({
 		r: 'rgba(255,0,153,0.9)',
 		b: 'rgba(0,229,255,0.9)',
 	},
+}).mount();
+
+// 左右パネルのノイズ描画（可視のときだけ動く）
+new PanelNoise({
+	selector: '.site-main__side',
+	color: [20, 102, 255],
 }).mount();
