@@ -11,7 +11,7 @@ npm run dev      # 開発サーバー
 npm run build    # astro build && pagefind --site dist → dist/ に出力
 ```
 
-- Node: `.node-version`（24.16.0）
+- Node: `.node-version`（24.21.0）
 - 検索: [Pagefind](https://pagefind.app/)（ビルド時に `dist/pagefind/` を生成）
 
 ## 開発フロー（ブランチ運用）
