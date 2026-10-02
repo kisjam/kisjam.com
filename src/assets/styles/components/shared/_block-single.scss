@@ -97,7 +97,7 @@
 			padding: 16px 24px;
 			border-left: 3px solid $color-accent;
 			background-color: rgba($color-accent, 0.06);
-			line-height: 1.75;
+			line-height: 2;
 
 			p:not(:first-child) {
 				margin-top: 16px;
@@ -119,7 +119,7 @@
 			}
 			padding: 20px 24px;
 			font-size: rem(14);
-			line-height: 1.75;
+			line-height: 2;
 			overflow-x: auto;
 			border-radius: $radius;
 			// Shiki のインラインスタイル(背景/文字色)を上書きしてインライン code と同じ見た目に
@@ -157,7 +157,7 @@
 			display: block;
 			overflow-x: auto;
 			border-collapse: collapse;
-			line-height: 1.75;
+			line-height: 2;
 
 			th,
 			td {
